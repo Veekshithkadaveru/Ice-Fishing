@@ -1,0 +1,317 @@
+[
+  {
+    "id": 1,
+    "categoryId": "ice_safety",
+    "categoryName": "Ice Safety",
+    "categoryIcon": "icefish_sym_5",
+    "question": "What is the minimum ice thickness generally considered safe for a single person on foot?",
+    "options": ["2 inches", "3 to 4 inches", "5 to 7 inches", "8 to 10 inches"],
+    "correctIndex": 1
+  },
+  {
+    "id": 2,
+    "categoryId": "ice_safety",
+    "categoryName": "Ice Safety",
+    "categoryIcon": "icefish_sym_5",
+    "question": "Which color of ice is typically the strongest and most trustworthy?",
+    "options": ["White opaque ice", "Grey ice", "Clear blue-black ice", "Brown tinted ice"],
+    "correctIndex": 2
+  },
+  {
+    "id": 3,
+    "categoryId": "ice_safety",
+    "categoryName": "Ice Safety",
+    "categoryIcon": "icefish_sym_5",
+    "question": "When you fall through ice, what is the greatest immediate threat in the first 30 seconds?",
+    "options": ["Hypothermia from water temperature", "Cold shock and involuntary gasping", "Becoming trapped under the ice", "Loss of consciousness"],
+    "correctIndex": 1
+  },
+  {
+    "id": 4,
+    "categoryId": "ice_safety",
+    "categoryName": "Ice Safety",
+    "categoryIcon": "icefish_sym_5",
+    "question": "Where should ice picks always be carried while on the ice?",
+    "options": ["In the bottom of your backpack", "In a side pocket of your sled", "On your person inside your jacket", "Clipped to the outside of your pack"],
+    "correctIndex": 2
+  },
+  {
+    "id": 5,
+    "categoryId": "ice_safety",
+    "categoryName": "Ice Safety",
+    "categoryIcon": "icefish_sym_5",
+    "question": "How far apart should you drill test holes when traveling onto unfamiliar ice?",
+    "options": ["Every 50 feet", "Every 150 feet", "Every 300 feet", "Every 500 feet"],
+    "correctIndex": 1
+  },
+  {
+    "id": 6,
+    "categoryId": "ice_safety",
+    "categoryName": "Ice Safety",
+    "categoryIcon": "icefish_sym_5",
+    "question": "Which areas of a frozen lake typically have the weakest and most dangerous ice?",
+    "options": ["The center of the main basin", "Areas covered by snow", "Near inlets, outlets, and pressure cracks", "North-facing protected bays"],
+    "correctIndex": 2
+  },
+  {
+    "id": 7,
+    "categoryId": "ice_safety",
+    "categoryName": "Ice Safety",
+    "categoryIcon": "icefish_sym_5",
+    "question": "What is the primary danger of running a propane heater in an enclosed ice shelter?",
+    "options": ["Fire risk from open flame", "Excessive heat melting the ice floor", "Carbon monoxide buildup", "Condensation damaging electronics"],
+    "correctIndex": 2
+  },
+  {
+    "id": 8,
+    "categoryId": "fish_biology",
+    "categoryName": "Fish Biology",
+    "categoryIcon": "icefish_sym_1",
+    "question": "Which freshwater fish is the only member of the cod family?",
+    "options": ["Walleye", "Burbot", "Northern Pike", "Lake Trout"],
+    "correctIndex": 1
+  },
+  {
+    "id": 9,
+    "categoryId": "fish_biology",
+    "categoryName": "Fish Biology",
+    "categoryIcon": "icefish_sym_1",
+    "question": "What unique metabolic adaptation allows crucian carp to survive in oxygen-depleted ice-covered water?",
+    "options": ["They extract oxygen from the ice itself", "They switch to anaerobic metabolism and produce alcohol", "They absorb oxygen through their skin", "They slow their heart rate to near zero"],
+    "correctIndex": 1
+  },
+  {
+    "id": 10,
+    "categoryId": "fish_biology",
+    "categoryName": "Fish Biology",
+    "categoryIcon": "icefish_sym_1",
+    "question": "During which months do burbot typically spawn under the ice?",
+    "options": ["October and November", "December and early January", "Late January and February", "March and April"],
+    "correctIndex": 2
+  },
+  {
+    "id": 11,
+    "categoryId": "fish_biology",
+    "categoryName": "Fish Biology",
+    "categoryIcon": "icefish_sym_1",
+    "question": "What feeding strategy makes perch so catchable in large numbers through the ice?",
+    "options": ["They are solitary ambush hunters", "They form dense competitive schools", "They feed exclusively at night", "They respond only to live bait"],
+    "correctIndex": 1
+  },
+  {
+    "id": 12,
+    "categoryId": "fish_biology",
+    "categoryName": "Fish Biology",
+    "categoryIcon": "icefish_sym_1",
+    "question": "Which sensory organ does burbot use to detect scent and locate food on the bottom?",
+    "options": ["Enlarged lateral line", "Electroreceptors near the snout", "A single barbel under the chin", "Chemoreceptors in the pectoral fins"],
+    "correctIndex": 2
+  },
+  {
+    "id": 13,
+    "categoryId": "fish_biology",
+    "categoryName": "Fish Biology",
+    "categoryIcon": "icefish_sym_1",
+    "question": "Walleye are described as crepuscular feeders. What does crepuscular mean in this context?",
+    "options": ["Feeding primarily in deep water", "Most active during dawn and dusk", "Preferring cold water temperatures", "Feeding in short intense bursts"],
+    "correctIndex": 1
+  },
+  {
+    "id": 14,
+    "categoryId": "fish_biology",
+    "categoryName": "Fish Biology",
+    "categoryIcon": "icefish_sym_1",
+    "question": "Why do large female pike become more catchable during late ice season in February?",
+    "options": ["They are feeding to recover from spawning", "They are staging in shallows for spring spawning", "Ice thickness forces them into shallower water", "They become more aggressive defending territory"],
+    "correctIndex": 1
+  },
+  {
+    "id": 15,
+    "categoryId": "gear_tackle",
+    "categoryName": "Gear & Tackle",
+    "categoryIcon": "icefish_sym_7",
+    "question": "What is the primary advantage of tungsten jigs over lead jigs of the same size?",
+    "options": ["They are less expensive to manufacture", "They are more durable in cold temperatures", "They are denser and sink faster", "They are completely non-toxic to fish"],
+    "correctIndex": 2
+  },
+  {
+    "id": 16,
+    "categoryId": "gear_tackle",
+    "categoryName": "Gear & Tackle",
+    "categoryIcon": "icefish_sym_7",
+    "question": "What auger hole diameter is considered the all-around standard for ice fishing most species?",
+    "options": ["4 inches", "6 inches", "8 inches", "10 inches"],
+    "correctIndex": 2
+  },
+  {
+    "id": 17,
+    "categoryId": "gear_tackle",
+    "categoryName": "Gear & Tackle",
+    "categoryIcon": "icefish_sym_7",
+    "question": "Which battery chemistry maintains best performance in extreme cold temperatures?",
+    "options": ["Standard alkaline", "Nickel-metal hydride (NiMH)", "Lead-acid", "Lithium"],
+    "correctIndex": 3
+  },
+  {
+    "id": 18,
+    "categoryId": "gear_tackle",
+    "categoryName": "Gear & Tackle",
+    "categoryIcon": "icefish_sym_7",
+    "question": "What type of line should be used as a leader for targeting northern pike through the ice?",
+    "options": ["4 lb monofilament", "10 lb fluorocarbon", "Wire or heavy coated steel leader", "Braided line of any weight"],
+    "correctIndex": 2
+  },
+  {
+    "id": 19,
+    "categoryId": "gear_tackle",
+    "categoryName": "Gear & Tackle",
+    "categoryIcon": "icefish_sym_7",
+    "question": "What is a flasher sonar's key advantage over a standard screen-based depth finder for active jigging?",
+    "options": ["It can display water temperature simultaneously", "It updates in near-real-time with no screen lag", "It stores fishing history automatically", "It works better in shallow water under 5 feet"],
+    "correctIndex": 1
+  },
+  {
+    "id": 20,
+    "categoryId": "gear_tackle",
+    "categoryName": "Gear & Tackle",
+    "categoryIcon": "icefish_sym_7",
+    "question": "Which ice shelter type is best suited for anglers who move frequently throughout the day?",
+    "options": ["Hard-sided permanent shanty", "Large hub-style pop-up shelter", "Flip-over portable sled shelter", "Tent-style with aluminum frame"],
+    "correctIndex": 2
+  },
+  {
+    "id": 21,
+    "categoryId": "gear_tackle",
+    "categoryName": "Gear & Tackle",
+    "categoryIcon": "icefish_sym_7",
+    "question": "What is the recommended storage practice for electric auger batteries before an ice fishing trip?",
+    "options": ["Store outside to pre-acclimate to cold", "Keep fully discharged until needed", "Store at room temperature overnight", "Freeze them to increase cell density"],
+    "correctIndex": 2
+  },
+  {
+    "id": 22,
+    "categoryId": "techniques",
+    "categoryName": "Fishing Techniques",
+    "categoryIcon": "icefish_sym_3",
+    "question": "What does the lift-and-drop jigging technique imitate to trigger strikes?",
+    "options": ["A crayfish walking along the bottom", "An injured baitfish rising and falling", "A nymph swimming toward the surface", "A frog diving into deeper water"],
+    "correctIndex": 1
+  },
+  {
+    "id": 23,
+    "categoryId": "techniques",
+    "categoryName": "Fishing Techniques",
+    "categoryIcon": "icefish_sym_3",
+    "question": "When a fish on sonar approaches your jig but turns away repeatedly, what should you do?",
+    "options": ["Jig more aggressively to provoke a reaction", "Immediately move to a different hole", "Slow down and reduce jigging intensity", "Switch to a much larger lure"],
+    "correctIndex": 2
+  },
+  {
+    "id": 24,
+    "categoryId": "techniques",
+    "categoryName": "Fishing Techniques",
+    "categoryIcon": "icefish_sym_3",
+    "question": "What is the 'dead-sticking' technique in ice fishing?",
+    "options": ["Using a wooden rod instead of graphite", "Leaving a baited rod completely stationary", "Dragging a jig along the bottom slowly", "Fishing with artificially scented lures only"],
+    "correctIndex": 1
+  },
+  {
+    "id": 25,
+    "categoryId": "techniques",
+    "categoryName": "Fishing Techniques",
+    "categoryIcon": "icefish_sym_3",
+    "question": "For pike fishing on tip-ups, when should you set the hook after the flag trips?",
+    "options": ["Immediately when the flag pops", "After waiting exactly 10 seconds", "Only after the spool runs steadily", "After the fish has stopped completely"],
+    "correctIndex": 2
+  },
+  {
+    "id": 26,
+    "categoryId": "techniques",
+    "categoryName": "Fishing Techniques",
+    "categoryIcon": "icefish_sym_3",
+    "question": "Why is a sideways sweep hookset often more effective than a straight upward strike for ice fishing?",
+    "options": ["It avoids spooking other fish in the school", "It prevents line twist in the fishing hole", "It creates better leverage since the rod is already nearly vertical", "It allows faster line retrieval after the set"],
+    "correctIndex": 2
+  },
+  {
+    "id": 27,
+    "categoryId": "techniques",
+    "categoryName": "Fishing Techniques",
+    "categoryIcon": "icefish_sym_3",
+    "question": "What is the purpose of pre-baiting a fishing spot on multiple days before actually fishing it?",
+    "options": ["To oxygenate the water and make fish more active", "To condition fish to visit the spot regularly", "To drive away competing species before the main session", "To soften ice for easier hole drilling"],
+    "correctIndex": 1
+  },
+  {
+    "id": 28,
+    "categoryId": "techniques",
+    "categoryName": "Fishing Techniques",
+    "categoryIcon": "icefish_sym_3",
+    "question": "Which jigging motion is most effective for finicky panfish that will not commit to an aggressive presentation?",
+    "options": ["Long sweeping rod lifts of 24 inches", "A continuous rapid quiver with minimal vertical movement", "Erratic random rod movements", "Slamming the jig down hard onto the bottom"],
+    "correctIndex": 1
+  },
+  {
+    "id": 29,
+    "categoryId": "regulations",
+    "categoryName": "Rules & Regulations",
+    "categoryIcon": "icefish_sym_6",
+    "question": "In most jurisdictions, how are tip-ups typically regulated compared to ice fishing rods?",
+    "options": ["Tip-ups are completely unregulated in all states", "They count as fishing lines and are subject to per-person line limits", "They are only legal to use in designated tip-up zones", "Tip-ups require a separate license from rod fishing"],
+    "correctIndex": 1
+  },
+  {
+    "id": 30,
+    "categoryId": "regulations",
+    "categoryName": "Rules & Regulations",
+    "categoryIcon": "icefish_sym_6",
+    "question": "What is a 'slot limit' as it applies to fish size regulations?",
+    "options": ["A restriction on the number of fish per species per day", "A rule requiring fish between two specific sizes to be released", "A limit on the total weight of fish kept per trip", "A regulation governing the size of fishing holes drilled"],
+    "correctIndex": 1
+  },
+  {
+    "id": 31,
+    "categoryId": "regulations",
+    "categoryName": "Rules & Regulations",
+    "categoryIcon": "icefish_sym_6",
+    "question": "Why do most jurisdictions require anglers to be within a certain distance of their tip-ups?",
+    "options": ["To ensure rapid response to any animal welfare emergency", "To prevent tip-ups from drifting under the ice", "To ensure lines are attended and fish are not left struggling unattended", "Because cold water dulls the flag mechanism sensitivity"],
+    "correctIndex": 2
+  },
+  {
+    "id": 32,
+    "categoryId": "regulations",
+    "categoryName": "Rules & Regulations",
+    "categoryIcon": "icefish_sym_6",
+    "question": "What does 'catch and release only' regulation mean during ice season?",
+    "options": ["You may keep one fish for identification purposes", "All fish caught must be immediately returned to the water unharmed", "Fish may be kept alive in a bucket but not taken home", "Only fish under the minimum size limit must be released"],
+    "correctIndex": 1
+  },
+  {
+    "id": 33,
+    "categoryId": "regulations",
+    "categoryName": "Rules & Regulations",
+    "categoryIcon": "icefish_sym_6",
+    "question": "Before fishing a new lake or state, what is the most reliable way to confirm current regulations?",
+    "options": ["Ask another angler at the lake", "Check last year's printed regulation booklet", "Review the current year's official fish and wildlife agency regulations", "Look up the regulations on a general fishing forum"],
+    "correctIndex": 2
+  },
+  {
+    "id": 34,
+    "categoryId": "regulations",
+    "categoryName": "Rules & Regulations",
+    "categoryIcon": "icefish_sym_6",
+    "question": "What must an angler typically do with ice fishing holes when leaving a public body of ice?",
+    "options": ["Leave them open as a courtesy to other anglers", "Fill them with snow or mark them as hazards", "Mark holes with flags that remain permanently", "Report hole locations to the local fish and wildlife office"],
+    "correctIndex": 1
+  },
+  {
+    "id": 35,
+    "categoryId": "regulations",
+    "categoryName": "Rules & Regulations",
+    "categoryIcon": "icefish_sym_6",
+    "question": "What is the purpose of a 'protected species' designation for a fish during ice season?",
+    "options": ["The species is legal to keep but has a reduced bag limit", "The species cannot be legally targeted, kept, or harmed", "The species requires a paid trophy permit to keep", "The species may only be caught using barbless hooks"],
+    "correctIndex": 1
+  }
+]

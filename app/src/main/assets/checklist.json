@@ -1,0 +1,128 @@
+[
+  {
+    "id": "safety_1",
+    "groupId": "safety",
+    "groupName": "Safety Equipment",
+    "name": "Ice picks / safety picks"
+  },
+  {
+    "id": "safety_2",
+    "groupId": "safety",
+    "groupName": "Safety Equipment",
+    "name": "Life rope (50+ ft throw rope)"
+  },
+  {
+    "id": "safety_3",
+    "groupId": "safety",
+    "groupName": "Safety Equipment",
+    "name": "Whistle (emergency signal)"
+  },
+  {
+    "id": "safety_4",
+    "groupId": "safety",
+    "groupName": "Safety Equipment",
+    "name": "Ice claws (wearable ice rescue claws)"
+  },
+  {
+    "id": "safety_5",
+    "groupId": "safety",
+    "groupName": "Safety Equipment",
+    "name": "GPS beacon / personal locator beacon"
+  },
+  {
+    "id": "clothing_1",
+    "groupId": "clothing",
+    "groupName": "Clothing & Warmth",
+    "name": "Thermal base layer (top and bottom)"
+  },
+  {
+    "id": "clothing_2",
+    "groupId": "clothing",
+    "groupName": "Clothing & Warmth",
+    "name": "Insulated waterproof boots"
+  },
+  {
+    "id": "clothing_3",
+    "groupId": "clothing",
+    "groupName": "Clothing & Warmth",
+    "name": "Waterproof outer jacket and bibs"
+  },
+  {
+    "id": "clothing_4",
+    "groupId": "clothing",
+    "groupName": "Clothing & Warmth",
+    "name": "Hand warmers (chemical heat packs)"
+  },
+  {
+    "id": "fishing_gear_1",
+    "groupId": "fishing_gear",
+    "groupName": "Fishing Gear",
+    "name": "Ice auger (manual or powered)"
+  },
+  {
+    "id": "fishing_gear_2",
+    "groupId": "fishing_gear",
+    "groupName": "Fishing Gear",
+    "name": "Ice fishing rod and reel"
+  },
+  {
+    "id": "fishing_gear_3",
+    "groupId": "fishing_gear",
+    "groupName": "Fishing Gear",
+    "name": "Tip-ups (rigged and ready)"
+  },
+  {
+    "id": "fishing_gear_4",
+    "groupId": "fishing_gear",
+    "groupName": "Fishing Gear",
+    "name": "Tackle box (jigs, hooks, line, bait)"
+  },
+  {
+    "id": "fishing_gear_5",
+    "groupId": "fishing_gear",
+    "groupName": "Fishing Gear",
+    "name": "Landing net or ice skimmer"
+  },
+  {
+    "id": "electronics_1",
+    "groupId": "electronics",
+    "groupName": "Electronics",
+    "name": "Fish finder / flasher sonar"
+  },
+  {
+    "id": "electronics_2",
+    "groupId": "electronics",
+    "groupName": "Electronics",
+    "name": "Headlamp + spare batteries"
+  },
+  {
+    "id": "electronics_3",
+    "groupId": "electronics",
+    "groupName": "Electronics",
+    "name": "Portable propane or electric heater"
+  },
+  {
+    "id": "electronics_4",
+    "groupId": "electronics",
+    "groupName": "Electronics",
+    "name": "Walkie-talkies / two-way radios"
+  },
+  {
+    "id": "provisions_1",
+    "groupId": "provisions",
+    "groupName": "Food & Provisions",
+    "name": "Thermos with hot drink"
+  },
+  {
+    "id": "provisions_2",
+    "groupId": "provisions",
+    "groupName": "Food & Provisions",
+    "name": "High-energy snacks (nuts, bars, jerky)"
+  },
+  {
+    "id": "provisions_3",
+    "groupId": "provisions",
+    "groupName": "Food & Provisions",
+    "name": "First aid kit"
+  }
+]

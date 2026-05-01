@@ -1,0 +1,184 @@
+[
+  {
+    "id": 1,
+    "name": "Perch",
+    "symbol": "icefish_sym_1",
+    "background": "icefish_back_2",
+    "accentColor": "#E8763A",
+    "heroFact": "Yellow perch are one of the most sought-after ice fishing targets in North America, forming dense schools under the ice that can produce non-stop action for hours.",
+    "habitat": [
+      "Perch thrive in clear to moderately turbid lakes and reservoirs with sandy or gravel bottoms mixed with weed beds and submerged structure.",
+      "They favor depths of 15 to 35 feet during winter, often suspending over deeper basins while feeding on plankton and small baitfish.",
+      "Look for perch near submerged points, inside weed edges, and transitions between hard bottom and soft mud where invertebrates concentrate."
+    ],
+    "baitAndTackle": [
+      "Small tungsten jigs in 1/32 to 1/16 oz tipped with a single wax worm or Eurolarvae are the top perch producers under the ice.",
+      "Use ultra-light 24-inch ice rods with 2 to 4 lb monofilament or fluorocarbon for the best bite detection and presentation sensitivity.",
+      "Spoons tipped with a minnow head worked in a tight jigging cadence mimic dying baitfish and trigger aggressive schooling perch to strike."
+    ],
+    "season": {
+      "peakMonths": ["December", "January", "February"],
+      "behavior": "During winter perch school tightly in mid-water columns and near bottom, moving between shallow feeding flats and deeper holding areas throughout the day. Morning and late afternoon are peak feeding windows. Schools can be located with a flasher sonar and once found produce rapid multi-fish action.",
+      "tips": [
+        "Drill multiple holes in a grid pattern and use a flasher sonar to locate the school before spending time fishing any single hole.",
+        "When perch go neutral, downsize your jig and add scent to the bait — a subtle twitch-pause presentation often triggers bites when aggressive jigging fails."
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "name": "Pike",
+    "symbol": "icefish_sym_2",
+    "background": "icefish_back_1",
+    "accentColor": "#2E7D32",
+    "heroFact": "Northern pike are apex ice predators that actively chase prey even in the coldest water, making them one of the most exciting and hard-fighting species to target through the ice.",
+    "habitat": [
+      "Pike hold in shallow vegetated bays and flats during early ice, relating closely to remaining green weeds that hold prey fish and provide ambush cover.",
+      "As winter deepens, trophy pike often move to mid-depth transitional zones of 8 to 18 feet, positioning along the edge of dying weed beds.",
+      "Creek channels, inlet flows, and oxygen-rich areas near moving water are key locations throughout the hard water season, especially in later ice when oxygen levels drop."
+    ],
+    "baitAndTackle": [
+      "Large tip-ups baited with 6 to 10 inch live or dead sucker, shiner, or whitefish set 12 to 18 inches off the bottom are the classic and most effective pike setup.",
+      "Use 20 to 30 lb wire or heavy fluorocarbon leaders — pike teeth will destroy monofilament in seconds and cost you the fish of a lifetime.",
+      "Large spoons, blade baits, and swimbaits worked aggressively through the water column can entice pike that are actively hunting and ignoring static bait presentations."
+    ],
+    "season": {
+      "peakMonths": ["December", "January", "February"],
+      "behavior": "Pike remain aggressive feeders throughout the winter, unlike many species that become lethargic. They tend to be most active around dawn and dusk, staging near weed edges waiting to ambush prey. Cold fronts can temporarily slow activity, but pike will resume feeding within 24 to 48 hours. Large females tend to be caught more frequently in late winter as they begin staging for spring spawn.",
+      "tips": [
+        "Run tip-ups spread across shallow to mid-depth zones to cover multiple depth ranges — the strike depth often reveals where pike are holding that day.",
+        "When pike are inactive, try dead-sticking a large sucker minnow with minimal movement; a motionless bait near the bottom can provoke reaction strikes from resting predators."
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "name": "Crucian Carp",
+    "symbol": "icefish_sym_3",
+    "background": "icefish_back_3",
+    "accentColor": "#B8860B",
+    "heroFact": "Crucian carp can survive complete ice-covered, oxygen-depleted waters that would kill virtually any other fish species by switching to anaerobic metabolism and producing alcohol as a metabolic byproduct.",
+    "habitat": [
+      "Crucian carp prefer shallow, densely vegetated lakes, ponds, and slow-moving waters with soft muddy bottoms rich in organic material.",
+      "During winter they often bury into bottom mud or dense root mats in the shallowest parts of the lake, especially in extreme cold conditions.",
+      "They are highly tolerant of low-oxygen environments and stagnant conditions, which allows them to inhabit isolated ponds and drainage ditches where other species cannot survive."
+    ],
+    "baitAndTackle": [
+      "Tiny maggots, bloodworms, or small bread paste fished on size 18 to 22 hooks are most effective, as crucians feed with very delicate, cautious bites in cold water.",
+      "Use the lightest possible float or jig setup — 1 to 2 lb line and a micro jig under 1/64 oz allows you to detect the extremely subtle bites crucians produce in near-freezing water.",
+      "Groundbait introduced sparingly around the hole using a mix of fine crumb and maggots can draw lethargic crucians to the fishing zone and stimulate competitive feeding."
+    ],
+    "season": {
+      "peakMonths": ["December", "January", "February"],
+      "behavior": "Crucian carp slow their metabolism dramatically during winter and feed very infrequently compared to warm-weather months. When they do feed, it is usually during the warmest part of the day, often midday when any solar warming penetrates the ice. Bites are extremely light and subtle — a bite indicator or ultra-sensitive float is essential. Patience and minimal disturbance are critical to success.",
+      "tips": [
+        "Avoid heavy foot traffic on the ice near your hole — crucians are extremely sensitive to vibration and will stop feeding at the slightest disturbance.",
+        "Fish with the smallest possible bait portions; a single maggot on a size 20 hook often outperforms larger offerings because crucians mouth bait very tentatively in cold water."
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "name": "Burbot",
+    "symbol": "icefish_sym_4",
+    "background": "icefish_back_4",
+    "accentColor": "#1565C0",
+    "heroFact": "Burbot are the only freshwater member of the cod family and are uniquely adapted to ice fishing season — they spawn in late January and February and actually become more active and easier to catch as temperatures plunge.",
+    "habitat": [
+      "Burbot inhabit the deepest, coldest parts of large lakes and rivers, spending most of the year in depths of 50 to 200 feet near rocky or gravel substrate.",
+      "During spawning season they move to shallower rocky points, shoals, and riverbeds in 10 to 30 feet where groups of fish congregate in writhing spawning aggregations.",
+      "Look for burbot along steep drop-offs adjacent to deep-water basins, particularly near tributary mouths and underwater ridges that concentrate forage fish."
+    ],
+    "baitAndTackle": [
+      "Large dead smelt, cisco, or sucker minnows laid directly on the bottom on circle hooks or treble hooks are the most consistent burbot producers.",
+      "Burbot have sensitive lateral lines and a barbel under the chin that detects scent — adding fish oil or cut-bait scent to your presentation dramatically increases catch rates.",
+      "Heavy blade baits and large tube jigs worked slowly just above the bottom at night are highly effective, as burbot are nocturnal hunters with excellent low-light vision."
+    ],
+    "season": {
+      "peakMonths": ["January", "February", "March"],
+      "behavior": "Burbot are at their most active during the coldest and darkest months of winter, making them a unique target for night ice fishing. They spawn in shallow water under the ice in late January through February, creating opportunities in otherwise unproductive winter locations. Fish congregate in large numbers during this period. After spawning, they return to deep water but remain active feeders through early spring.",
+      "tips": [
+        "Night fishing is significantly more productive for burbot — set up after dark in 15 to 30 feet of water near rocky spawning areas and expect action to begin around midnight.",
+        "Run multiple tip-ups with fresh-cut bait in a spread pattern across the spawning flat; burbot actively cruise the bottom searching for food rather than sitting on structure."
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "name": "Roach",
+    "symbol": "icefish_sym_5",
+    "background": "icefish_back_3",
+    "accentColor": "#C62828",
+    "heroFact": "Roach are one of the most widespread and abundant ice fishing targets across Northern Europe and Russia, forming massive winter schools that provide consistent action even during the harshest cold snaps.",
+    "habitat": [
+      "Roach favor lakes and slow rivers with mixed substrates, inhabiting open-water zones and the edges of aquatic vegetation from shallow margins to depths of 20 feet.",
+      "In winter they school in mid-water columns over deeper basins, often holding at a specific depth layer that corresponds to water temperature and light levels.",
+      "Gravel and sandy areas adjacent to deeper water are prime roach feeding grounds in winter, where they pick invertebrates and plant material from the bottom."
+    ],
+    "baitAndTackle": [
+      "Maggots — single, double, or in combination with pinkies — are the universal roach bait under ice, fished on size 16 to 20 hooks with light 2 to 3 lb line.",
+      "Small bread punch, bloodworm, and caster are excellent alternative baits when maggots are slow — roach can be selective and alternating baits often rekindles feeding activity.",
+      "A sensitive float or lightweight jig fished at the depth the school is holding, found by dropping the bait and watching your sonar, puts you directly in the feeding zone."
+    ],
+    "season": {
+      "peakMonths": ["December", "January", "February"],
+      "behavior": "Roach remain active feeders throughout winter but adjust their depth and location based on light and temperature. They tend to feed in short bursts rather than continuously, with peaks at dawn, midday, and dusk. Schools can be located with sonar and once found provide fast-paced sport. Cold fronts push roach deeper and tighten schools, while stable mild conditions bring them into shallower water and more active feeding.",
+      "tips": [
+        "Feed lightly and regularly — dropping a small pinch of maggots or fine groundbait every few minutes keeps the school engaged without overfeeding them.",
+        "If bites stop suddenly, try lifting your bait several feet up in the water column — roach often rise off the bottom when spooked and respond to a bait at their eye level."
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "name": "Bream",
+    "symbol": "icefish_sym_6",
+    "background": "icefish_back_5",
+    "accentColor": "#5D4037",
+    "heroFact": "Bronze bream can grow to impressive sizes through ice fishing season and are notorious for feeding in slow, deliberate fashion — their characteristic bite of lifting the bait and moving horizontally creates the classic 'lift and lay flat' float signal known to every bream angler.",
+    "habitat": [
+      "Bream prefer deep, weedy lakes and slow rivers with soft muddy bottoms where they feed by standing on their heads to vacuum up invertebrates from the sediment.",
+      "In winter they school in the deepest available water — typically 15 to 40 feet — moving very little and conserving energy during prolonged cold periods.",
+      "Underwater plateaus, deep-water weed beds, and flat muddy basins adjacent to the main channel are classic bream wintering areas that hold fish reliably year after year."
+    ],
+    "baitAndTackle": [
+      "Lobworm sections, dendrobaena worms, and large bunches of maggots on size 12 to 16 hooks are the top bream baits under ice, as bream prefer substantial offerings.",
+      "A static presentation on the bottom using a dead-stick rod with a sensitive quivertip or bite indicator is ideal — bream barely move in cold water and gentle lifts indicate a take.",
+      "Groundbait balls introduced through the hole using a feed pot or bait dropper draw bream into the swim and keep them feeding in a concentrated area under your hole."
+    ],
+    "season": {
+      "peakMonths": ["December", "January", "February"],
+      "behavior": "Bream are among the most sluggish winter fish, often resting motionless near the bottom for extended periods before undertaking brief feeding bouts. They feed primarily in darkness and at first light, making early morning the prime session time. A shoal of bream in feeding mode can clean up a swim quickly then disappear just as suddenly. Consistent baiting over several days prior to fishing can train a bream shoal to visit your spot regularly.",
+      "tips": [
+        "Pre-bait your chosen hole for two or three consecutive days before fishing — bream respond well to regular feeding and will begin to visit the spot predictably.",
+        "Strike on any unusual float behavior, including a float that fails to settle or dips only slightly; bream often pick up bait from below and the float signal can be very subtle."
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "name": "Smelt",
+    "symbol": "icefish_sym_7",
+    "background": "icefish_back_5",
+    "accentColor": "#00838F",
+    "heroFact": "Rainbow smelt are the quintessential ice fishing species across the Great Lakes and northeastern North America, running in enormous schools through the winter and providing fast-action multi-fish catches that are celebrated in smelt-fishing communities.",
+    "habitat": [
+      "Smelt are pelagic schooling fish that suspend in open water throughout the water column, often found at 20 to 60 foot depths over the main basin of large lakes and deep reservoirs.",
+      "They congregate near tributary mouths, inflows, and narrows during late winter as they begin staging for their spring spawning runs into streams and rivers.",
+      "Thermocline edges, submerged islands, and the interface between warmer and colder water layers are key smelt locations identified by sonar."
+    ],
+    "baitAndTackle": [
+      "Small teardrop jigs and Swedish Pimples in 1/16 to 1/8 oz tipped with wax worms or cut smelt belly strips are highly effective, worked with a continuous subtle jigging motion.",
+      "Smelt will hit bare metallic lures — plain silver or gold spoons jigged aggressively attract schooling fish visually and create competitive feeding responses.",
+      "Light 2 to 4 lb line on a sensitive ultralight rod allows you to feel the subtle smelt bite and presents the small jig sizes properly for best action."
+    ],
+    "season": {
+      "peakMonths": ["January", "February", "March"],
+      "behavior": "Smelt are highly mobile schooling fish that move with the thermocline and prey concentrations, requiring anglers to stay mobile and use sonar to track them. They feed actively throughout winter and can be caught at any hour, though dawn and dusk typically produce the fastest action. As late winter approaches, schools move shallower and closer to spawning tributaries, concentrating fishing pressure and creating high-action sessions. Smelt are an excellent table fish which adds extra appeal to targeting them.",
+      "tips": [
+        "Stay mobile and drill many holes — smelt schools move constantly and a good unit of fish on sonar can vanish within minutes as the school passes through.",
+        "Use a spreader rig or multi-hook dropper rig to catch multiple smelt per drop when you locate a dense school, dramatically increasing your catch rate."
+      ]
+    }
+  }
+]

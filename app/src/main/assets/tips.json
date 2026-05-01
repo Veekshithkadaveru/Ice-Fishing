@@ -1,0 +1,282 @@
+[
+  {
+    "id": 1,
+    "categoryId": "safety",
+    "categoryName": "Safety",
+    "categoryIcon": "icefish_sym_5",
+    "title": "Check Ice Thickness Every 150 Feet",
+    "body": "Never assume ice is uniformly thick across an entire lake. Drill a test hole and measure thickness every 150 feet as you travel onto new ice, especially near inlets, outlets, and pressure cracks. Consistent measurement is the only reliable way to confirm safe ice as conditions vary dramatically across a water body."
+  },
+  {
+    "id": 2,
+    "categoryId": "safety",
+    "categoryName": "Safety",
+    "categoryIcon": "icefish_sym_5",
+    "title": "Always Carry Ice Picks on Your Body",
+    "body": "Ice picks should be worn around your neck inside your jacket at all times while on the ice — not stored in your pack. If you fall through, you will likely drop everything you are carrying but will still have your picks for self-rescue. Bright colors make picks easier to find in a chaotic emergency situation."
+  },
+  {
+    "id": 3,
+    "categoryId": "safety",
+    "categoryName": "Safety",
+    "categoryIcon": "icefish_sym_5",
+    "title": "File a Float Plan Before Every Trip",
+    "body": "Before leaving for the ice, tell a trusted person exactly where you are going, what vehicle you are driving, and when you expect to return. Set a specific time at which they should call emergency services if they have not heard from you. This simple habit ensures that help is dispatched quickly if you are in trouble and cannot call for it yourself."
+  },
+  {
+    "id": 4,
+    "categoryId": "safety",
+    "categoryName": "Safety",
+    "categoryIcon": "icefish_sym_5",
+    "title": "Never Ignore Grey or White Ice",
+    "body": "Clear blue-black ice is the strongest type, but grey or white opaque ice may be only half as strong per inch due to air pockets, slush, or water infiltration. Treat any grey patch as a danger zone regardless of how thick it measures. Walk around grey ice rather than over it whenever possible."
+  },
+  {
+    "id": 5,
+    "categoryId": "safety",
+    "categoryName": "Safety",
+    "categoryIcon": "icefish_sym_5",
+    "title": "Carry a Throw Rope in Your Pack",
+    "body": "A 50 to 75 foot throw rope stored near the top of your pack allows you to rescue a partner who has fallen through without putting yourself at risk of the same fate. Lie flat on the ice to distribute your weight and throw the rope to the person in the water. Never stand directly at the edge of a break zone when attempting a rescue."
+  },
+  {
+    "id": 6,
+    "categoryId": "gear",
+    "categoryName": "Gear",
+    "categoryIcon": "icefish_sym_7",
+    "title": "Keep Spare Auger Blades Sharp and Protected",
+    "body": "Dull auger blades make every hole a workout and increase battery or arm fatigue dramatically over a long session of drilling. Keep a blade sharpener in your gear bag and touch up blades before each trip. Store blades in the protective cover that came with the auger — even brief contact with gravel or concrete destroys a cutting edge."
+  },
+  {
+    "id": 7,
+    "categoryId": "gear",
+    "categoryName": "Gear",
+    "categoryIcon": "icefish_sym_7",
+    "title": "Store Batteries Warm Overnight",
+    "body": "Lithium and lithium-ion batteries lose significant capacity in cold temperatures, reducing flasher and electric auger performance dramatically on frigid days. Keep all battery-powered equipment inside at room temperature overnight before your trip. Carry a spare battery in an inside jacket pocket to warm it with your body heat until needed."
+  },
+  {
+    "id": 8,
+    "categoryId": "gear",
+    "categoryName": "Gear",
+    "categoryIcon": "icefish_sym_7",
+    "title": "Use Tungsten Jigs for Finesse Ice Fishing",
+    "body": "Tungsten is significantly denser than lead, meaning a tungsten jig sinks faster and reaches depth more quickly in a given size than an equivalent lead jig. This allows you to fish smaller profiles — which trigger more bites from pressured fish — while still getting down to depth rapidly. Tungsten jigs also transmit subtle bites more efficiently due to their density."
+  },
+  {
+    "id": 9,
+    "categoryId": "gear",
+    "categoryName": "Gear",
+    "categoryIcon": "icefish_sym_7",
+    "title": "Apply Line Conditioner to Prevent Freeze-Up",
+    "body": "Ice forming on fishing line and in rod guides is one of the most frustrating gear problems in extreme cold. Apply a dedicated ice line conditioner or reel lubricant to your line before fishing and reapply periodically during the session. Alternatively, a tiny amount of lip balm rubbed on the guides prevents ice buildup effectively and is easily carried in a jacket pocket."
+  },
+  {
+    "id": 10,
+    "categoryId": "gear",
+    "categoryName": "Gear",
+    "categoryIcon": "icefish_sym_7",
+    "title": "Match Rod Length to Fishing Style",
+    "body": "A 24-inch ultralight rod is ideal for finesse jigging in a shelter where space is limited, offering precise control for small jigs and light line. A 36-inch medium rod provides better leverage for larger fish species and open-ice fishing with more room to maneuver. Carrying one rod of each length covers most ice fishing scenarios you will encounter."
+  },
+  {
+    "id": 11,
+    "categoryId": "technique",
+    "categoryName": "Technique",
+    "categoryIcon": "icefish_sym_1",
+    "title": "Always Start by Locating the School",
+    "body": "Before committing to a hole for the session, drill several exploratory holes across a promising area and use your sonar to find where fish are holding. Moving an extra 50 feet can put you directly over an active school rather than 50 feet away from it. Five minutes of location work saves hours of fishing in unproductive water."
+  },
+  {
+    "id": 12,
+    "categoryId": "technique",
+    "categoryName": "Technique",
+    "categoryIcon": "icefish_sym_1",
+    "title": "Fish Two Rods Simultaneously: One Active, One Dead-Stick",
+    "body": "Where regulations allow, running one rod with active jigging and one rod on a holder with a stationary bait covers two completely different feeding modes at once. Fish that are attracted by the jigging rod but reluctant to commit often strike the stationary dead-stick rod nearby. This doubles your presentation variety without requiring extra effort."
+  },
+  {
+    "id": 13,
+    "categoryId": "technique",
+    "categoryName": "Technique",
+    "categoryIcon": "icefish_sym_1",
+    "title": "Slow Down When Fish Won't Commit",
+    "body": "When sonar shows fish approaching your jig but turning away, slowing down almost always produces better results than speeding up. Reduce your jigging stroke to a gentle quiver, shorten pauses, and let the bait hang completely still for 10 to 20 seconds. Cold-water fish are reluctant feeders and a stationary bait is often less threatening than an aggressively moving one."
+  },
+  {
+    "id": 14,
+    "categoryId": "technique",
+    "categoryName": "Technique",
+    "categoryIcon": "icefish_sym_1",
+    "title": "Remove Ice from Your Hole Frequently",
+    "body": "Ice slush and crystals reforming in your fishing hole interfere with line movement, reduce bite detection, and can freeze your line solid in minutes on very cold days. Keep a small ladle, skimmer, or foam cup nearby and clear the hole every few minutes. A clear hole also allows you to see your line more easily for visual bite detection."
+  },
+  {
+    "id": 15,
+    "categoryId": "technique",
+    "categoryName": "Technique",
+    "categoryIcon": "icefish_sym_1",
+    "title": "Match the Hatch: Observe What Fish Are Eating",
+    "body": "Check the stomach contents of the first fish you catch — small gill plates, invertebrate legs, and color of stomach contents reveal exactly what fish are feeding on that day. Matching your jig size, color, and style to what fish are actively consuming dramatically increases your catch rate. A chartreuse jig may produce zero bites while a brown one triggers a strike on every drop."
+  },
+  {
+    "id": 16,
+    "categoryId": "bait",
+    "categoryName": "Bait & Lures",
+    "categoryIcon": "icefish_sym_3",
+    "title": "Wax Worms Are the Universal Ice Fishing Bait",
+    "body": "Wax worms — the larvae of the wax moth — are the single most versatile and universally effective ice fishing bait. They stay alive for weeks when kept cool, produce an irresistible scent in cold water, and can tip virtually any jig style. A single wax worm on a tungsten teardrop catches perch, bluegill, crappie, roach, and even walleye throughout the ice season."
+  },
+  {
+    "id": 17,
+    "categoryId": "bait",
+    "categoryName": "Bait & Lures",
+    "categoryIcon": "icefish_sym_3",
+    "title": "Keep Live Bait Warm to Maintain Activity",
+    "body": "Active baitfish and lively worms catch more fish than sluggish or dead bait. Keep minnow containers inside your shelter or in an insulated container away from extreme cold, and store wax worms and maggots in a pocket close to your body. An active bait that moves naturally on the hook triggers far more strikes than a motionless one."
+  },
+  {
+    "id": 18,
+    "categoryId": "bait",
+    "categoryName": "Bait & Lures",
+    "categoryIcon": "icefish_sym_3",
+    "title": "Add Scent to Metal Lures for More Bites",
+    "body": "Metal spoons and blade baits are excellent attractors at distance but lack the scent signal that draws fish in for the final commitment. Adding a wax worm, small minnow piece, or commercial fish attractant scent to the hook of a metal lure combines long-range visual attraction with short-range scent, triggering both the chase instinct and the feeding response."
+  },
+  {
+    "id": 19,
+    "categoryId": "bait",
+    "categoryName": "Bait & Lures",
+    "categoryIcon": "icefish_sym_3",
+    "title": "Use Glow Jigs for Low-Light and Deep Water",
+    "body": "Glow-in-the-dark jig coatings and UV-reactive finishes increase lure visibility dramatically in deep water, overcast conditions, and during the low-light periods when many predator species are most active. Charge glow jigs with a flashlight or phone screen between drops to maintain maximum luminescence. Glow jigs often outperform natural colors by a wide margin during the prime dawn and dusk feeding windows."
+  },
+  {
+    "id": 20,
+    "categoryId": "bait",
+    "categoryName": "Bait & Lures",
+    "categoryIcon": "icefish_sym_3",
+    "title": "Carry a Range of Jig Sizes for Changing Conditions",
+    "body": "A jig that is perfectly sized for medium-active fish may be too large for finicky neutral fish and too small to attract active aggressive fish. Carry a range from 1/64 oz micro jigs up to 3/8 oz heavier spoons to adapt to changing conditions throughout the day. Switching from a larger attractor jig to a tiny finesse jig beneath it on a dropper rig covers both ends of the feeding spectrum at once."
+  },
+  {
+    "id": 21,
+    "categoryId": "location",
+    "categoryName": "Finding Fish",
+    "categoryIcon": "icefish_sym_2",
+    "title": "Start Ice Season Shallow, Move Deep as Winter Progresses",
+    "body": "During early ice, most species concentrate in shallow weedy bays and near-shore areas that still hold active food sources. As winter deepens, weeds die off, oxygen levels drop in shallows, and fish gradually migrate to deeper offshore basins and mid-depth structure. Adjust your target depth progressively through the season rather than returning to the same spot you found productive in early December."
+  },
+  {
+    "id": 22,
+    "categoryId": "location",
+    "categoryName": "Finding Fish",
+    "categoryIcon": "icefish_sym_2",
+    "title": "Locate Underwater Structure Before Drilling",
+    "body": "Study bathymetric lake maps before arriving at the ice to identify underwater points, humps, drop-offs, and channel bends. These structural features concentrate fish throughout the ice season. Drill holes along the contour lines of a submerged point or the edge of an underwater hump rather than randomly, and you will spend far more time catching fish and less time searching for them."
+  },
+  {
+    "id": 23,
+    "categoryId": "location",
+    "categoryName": "Finding Fish",
+    "categoryIcon": "icefish_sym_2",
+    "title": "Follow the Baitfish to Find Predators",
+    "body": "Predator species such as pike, walleye, and perch follow concentrations of baitfish throughout winter. Locate areas where smelt, cisco, or shiners are schooling using sonar and you will often find the predators nearby. Areas near inlets and river mouths hold higher dissolved oxygen levels and draw baitfish, which in turn attract the predator species most ice anglers are targeting."
+  },
+  {
+    "id": 24,
+    "categoryId": "location",
+    "categoryName": "Finding Fish",
+    "categoryIcon": "icefish_sym_2",
+    "title": "Fish Transitions Between Bottom Types",
+    "body": "The boundary between hard gravel or sand bottom and soft muddy substrate is a productive zone throughout winter. Invertebrates and insect larvae concentrate where organic sediment meets firmer material, drawing perch, bream, and roach to feed. Soft mud areas adjacent to hard rock or gravel edges consistently produce fish from early ice to late season."
+  },
+  {
+    "id": 25,
+    "categoryId": "location",
+    "categoryName": "Finding Fish",
+    "categoryIcon": "icefish_sym_2",
+    "title": "Revisit Proven Holes From Previous Sessions",
+    "body": "Underwater structure does not change between sessions — a point, reef, or channel edge that held fish last week will have the same attractive characteristics this week. Mark productive holes with GPS coordinates or physical markers and return to them on subsequent trips. Consistent producers throughout a season reveal the structural features you should seek in new waters."
+  },
+  {
+    "id": 26,
+    "categoryId": "weather",
+    "categoryName": "Weather & Conditions",
+    "categoryIcon": "icefish_sym_4",
+    "title": "Fish Before a Cold Front for Peak Action",
+    "body": "The 24 to 48 hours preceding an approaching cold front typically produce excellent fishing as barometric pressure drops and fish feed aggressively before the system arrives. Rising wind, building clouds, and a falling barometer are signs of approaching cold front and often signal the best fishing window of the week. Plan your most serious outings for these pre-front periods whenever possible."
+  },
+  {
+    "id": 27,
+    "categoryId": "weather",
+    "categoryName": "Weather & Conditions",
+    "categoryIcon": "icefish_sym_4",
+    "title": "Expect Post-Cold-Front Slowdowns to Last 48 Hours",
+    "body": "After a cold front passes, fish often go neutral or completely inactive for 24 to 48 hours as barometric pressure peaks and stabilizes at a high level. Fishing during this period requires extreme finesse — downsize jigs, use lighter line, reduce jigging intensity, and focus on the most natural presentations possible. Patience is essential; wait for the pressure to stabilize and begin to fall before expecting normal feeding activity to resume."
+  },
+  {
+    "id": 28,
+    "categoryId": "weather",
+    "categoryName": "Weather & Conditions",
+    "categoryIcon": "icefish_sym_4",
+    "title": "Overcast Days Often Beat Sunny Blue-Sky Days",
+    "body": "Clear sunny days with high barometric pressure are among the most difficult conditions for ice fishing. Sunlight penetrating clear ice can make fish light-sensitive and push them deeper. Overcast cloudy conditions with moderate stable pressure spread feeding activity over more of the day and allow fish to use shallower water more comfortably. Many experienced ice anglers specifically target grey overcast days for their most productive sessions."
+  },
+  {
+    "id": 29,
+    "categoryId": "weather",
+    "categoryName": "Weather & Conditions",
+    "categoryIcon": "icefish_sym_4",
+    "title": "Wind Direction Changes Signal Weather Shifts",
+    "body": "Monitor wind direction carefully throughout your ice fishing session. A shift from south to north or from west to north typically signals an incoming cold front, while a shift from north to south indicates moderating conditions. Wind that strengthens and shifts quickly often precedes rapid weather changes. Build weather awareness into your ice fishing practice to predict fish behavior and plan your fishing schedule more effectively."
+  },
+  {
+    "id": 30,
+    "categoryId": "weather",
+    "categoryName": "Weather & Conditions",
+    "categoryIcon": "icefish_sym_4",
+    "title": "Early Morning and Late Afternoon Are Peak Times",
+    "body": "Regardless of weather conditions, the first and last hour of daylight are consistently the most productive periods for most ice fishing species. Light levels change rapidly at these times, triggering feeding responses in species that use light variation as a feeding cue. Arrive early enough to be set up and fishing before first light, and plan to stay until last light to capture both feeding windows in a single session."
+  },
+  {
+    "id": 31,
+    "categoryId": "emergency",
+    "categoryName": "Emergency Preparedness",
+    "categoryIcon": "icefish_sym_6",
+    "title": "Carry a Dry Change of Clothes in a Waterproof Bag",
+    "body": "A complete dry set of warm clothes sealed in a waterproof dry bag should be in every ice angler's pack. If you fall through, get wet, or sweat through your base layer during an active day on the ice, dry clothes are the difference between continuing safely and facing serious hypothermia. Store the dry bag in the bottom of your sled where it stays protected and accessible."
+  },
+  {
+    "id": 32,
+    "categoryId": "emergency",
+    "categoryName": "Emergency Preparedness",
+    "categoryIcon": "icefish_sym_6",
+    "title": "Keep Your Phone Warm and Charged",
+    "body": "Your cell phone is your emergency communication device — protect it accordingly. Keep it in an inside pocket against your body heat, not in your outer jacket pocket where it is exposed to cold air. Cold temperatures can shut down a phone that shows 40 percent battery in minutes. Use a phone case with insulation or a hand warmer pocket sleeve in extreme cold."
+  },
+  {
+    "id": 33,
+    "categoryId": "emergency",
+    "categoryName": "Emergency Preparedness",
+    "categoryIcon": "icefish_sym_6",
+    "title": "Know the Location of the Nearest Warm Building",
+    "body": "Before heading out onto any body of ice, identify the nearest heated building — a lakeside home, bait shop, warming hut, or vehicle with a running heater — and estimate how long it would take to reach it on foot. In a cold-water immersion emergency every minute of rewarming time counts. Knowing your escape route before you need it makes the difference between a manageable emergency and a fatal one."
+  },
+  {
+    "id": 34,
+    "categoryId": "emergency",
+    "categoryName": "Emergency Preparedness",
+    "categoryIcon": "icefish_sym_6",
+    "title": "Carry a Basic First Aid Kit in Your Gear",
+    "body": "A compact first aid kit should be a permanent fixture in your ice fishing sled or pack. Include bandages, gauze, medical tape, antiseptic wipes, pain reliever, and emergency thermal blankets. Cuts from auger blades and ice chisels are common, and a puncture wound in cold wet conditions can become a serious infection risk without proper first aid."
+  },
+  {
+    "id": 35,
+    "categoryId": "emergency",
+    "categoryName": "Emergency Preparedness",
+    "categoryIcon": "icefish_sym_6",
+    "title": "Install a Carbon Monoxide Detector in Your Shelter",
+    "body": "Portable heaters in enclosed ice shelters produce carbon monoxide — an odorless, colorless gas that causes confusion, unconsciousness, and death. Every enclosed ice shelter should have a small battery-powered CO detector mounted at breathing height. Check the battery before each season, bring the unit inside overnight to confirm it functions, and never disable it because it is beeping — that alarm means you need fresh air immediately."
+  }
+]
