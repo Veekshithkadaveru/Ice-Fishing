@@ -5,8 +5,10 @@ sealed class Screen(val route: String) {
     object Home : Screen("home")
     object FishGuideHome : Screen("fish_guide_home")
     data class FishDetail(val speciesId: Int) : Screen("fish_detail/{speciesId}") {
-        companion object { const val ROUTE = "fish_detail/{speciesId}" }
-        fun createRoute(id: Int) = "fish_detail/$id"
+        companion object {
+            const val ROUTE = "fish_detail/{speciesId}"
+            fun createRoute(id: Int) = "fish_detail/$id"
+        }
     }
     object ArticlesHome : Screen("articles_home")
     data class ArticleDetail(val articleId: Int) : Screen("article_detail/{articleId}") {

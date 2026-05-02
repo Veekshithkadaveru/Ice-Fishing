@@ -1,16 +1,255 @@
 package app.krafted.icefishing.ui.fishguide
 
+import android.app.Application
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import app.krafted.icefishing.data.model.Species
+import app.krafted.icefishing.ui.assets.IceFishAssets
+import app.krafted.icefishing.viewmodel.FishDetailUiState
+import app.krafted.icefishing.viewmodel.FishDetailViewModel
+import kotlin.runCatching
+import android.graphics.Color as AndroidColor
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FishDetailScreen(speciesId: Int, navController: NavController) {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = "Fish Detail")
+    val app = LocalContext.current.applicationContext as Application
+    val viewModel: FishDetailViewModel = viewModel(
+        key = "fish_detail_$speciesId",
+        factory = FishDetailViewModel.factory(app, speciesId),
+    )
+    val state by viewModel.state.collectAsState()
+    var selectedTab by remember(speciesId) { mutableIntStateOf(0) }
+
+    Scaffold(
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = { Text("Fish Guide", style = MaterialTheme.typography.titleLarge) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Back",
+                        )
+                    }
+                },
+            )
+        },
+    ) { padding ->
+        when (val s = state) {
+            is FishDetailUiState.Loading -> Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding),
+                contentAlignment = Alignment.Center,
+            ) {
+                CircularProgressIndicator()
+            }
+
+            is FishDetailUiState.NotFound -> Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text("Species not found.", style = MaterialTheme.typography.bodyLarge)
+            }
+
+            is FishDetailUiState.Ready -> {
+                val accent = runCatching {
+                    Color(AndroidColor.parseColor(s.species.accentColor))
+                }.getOrElse { MaterialTheme.colorScheme.secondary }
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding),
+                ) {
+                    HeroSection(species = s.species, accent = accent)
+                    TabRow(
+                        selectedTabIndex = selectedTab,
+                        containerColor = MaterialTheme.colorScheme.surface,
+                        contentColor = accent,
+                    ) {
+                        Tab(
+                            selected = selectedTab == 0,
+                            onClick = { selectedTab = 0 },
+                            text = { Text("Habitat") },
+                        )
+                        Tab(
+                            selected = selectedTab == 1,
+                            onClick = { selectedTab = 1 },
+                            text = { Text("Bait & tackle") },
+                        )
+                        Tab(
+                            selected = selectedTab == 2,
+                            onClick = { selectedTab = 2 },
+                            text = { Text("Season") },
+                        )
+                    }
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxWidth()
+                            .verticalScroll(rememberScrollState())
+                            .padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        when (selectedTab) {
+                            0 -> HabitatTab(s.species)
+                            1 -> BaitTab(s.species)
+                            2 -> SeasonTab(s.species)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun HeroSection(species: Species, accent: Color) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(228.dp),
+    ) {
+        Image(
+            painter = painterResource(IceFishAssets.resolve(species.background)),
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop,
+        )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.verticalGradient(
+                        listOf(
+                            Color.Black.copy(alpha = 0.15f),
+                            MaterialTheme.colorScheme.surface.copy(alpha = 0.97f),
+                        ),
+                    ),
+                ),
+        )
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomStart)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Text(
+                text = species.name,
+                style = MaterialTheme.typography.headlineSmall,
+                color = accent,
+            )
+            Text(
+                text = species.heroFact,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+        }
+    }
+}
+
+@Composable
+private fun HabitatTab(species: Species) {
+    species.habitat.forEach { paragraph ->
+        OutlinedCard(modifier = Modifier.fillMaxWidth()) {
+            Text(
+                text = paragraph,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(16.dp),
+            )
+        }
+    }
+}
+
+@Composable
+private fun BaitTab(species: Species) {
+    species.baitAndTackle.forEach { paragraph ->
+        OutlinedCard(modifier = Modifier.fillMaxWidth()) {
+            Text(
+                text = paragraph,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(16.dp),
+            )
+        }
+    }
+}
+
+@Composable
+private fun SeasonTab(species: Species) {
+    val season = species.season
+    OutlinedCard(modifier = Modifier.fillMaxWidth()) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Text(
+                text = "Peak months",
+                style = MaterialTheme.typography.titleSmall,
+            )
+            Text(
+                text = season.peakMonths.joinToString(", "),
+                style = MaterialTheme.typography.bodyMedium,
+            )
+            Text(
+                text = "Winter behavior",
+                style = MaterialTheme.typography.titleSmall,
+            )
+            Text(
+                text = season.behavior,
+                style = MaterialTheme.typography.bodyMedium,
+            )
+            Text(
+                text = "Tips",
+                style = MaterialTheme.typography.titleSmall,
+            )
+            season.tips.forEach { tip ->
+                Text(
+                    text = "· $tip",
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+            }
+        }
     }
 }
