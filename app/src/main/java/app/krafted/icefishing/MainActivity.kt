@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun IceFishingNavHost() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.Splash.route) {
+    NavHost(navController = navController, startDestination = Screen.Home.route) {
         composable(Screen.Splash.route) {
             SplashScreen(onNavigateToHome = {
                 navController.navigate(Screen.Home.route) {
