@@ -72,9 +72,9 @@ fun SearchResultsScreen(
                         SearchResultCard(result, onClick = {
                             when (result.type) {
                                 ContentType.FISH -> navController.navigate(Screen.FishDetail.createRoute(result.id.toInt()))
-                                ContentType.ARTICLE -> navController.navigate(Screen.ArticleDetail(0).createRoute(result.id.toInt()))
-                                ContentType.TIP -> navController.navigate(Screen.TipsCategory("").createRoute(result.id))
-                                ContentType.QUIZ -> navController.navigate(Screen.Quiz("").createRoute(result.id))
+                                ContentType.ARTICLE -> navController.navigate(Screen.ArticleDetail.createRoute(result.id.toInt()))
+                                ContentType.TIP -> navController.navigate(Screen.TipsCategory.createRoute(result.id))
+                                ContentType.QUIZ -> navController.navigate(Screen.Quiz.createRoute(result.id))
                             }
                         })
                     }

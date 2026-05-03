@@ -12,22 +12,30 @@ sealed class Screen(val route: String) {
     }
     object ArticlesHome : Screen("articles_home")
     data class ArticleDetail(val articleId: Int) : Screen("article_detail/{articleId}") {
-        companion object { const val ROUTE = "article_detail/{articleId}" }
-        fun createRoute(id: Int) = "article_detail/$id"
+        companion object { 
+            const val ROUTE = "article_detail/{articleId}" 
+            fun createRoute(id: Int) = "article_detail/$id"
+        }
     }
     object TipsHome : Screen("tips_home")
     data class TipsCategory(val categoryId: String) : Screen("tips_category/{categoryId}") {
-        companion object { const val ROUTE = "tips_category/{categoryId}" }
-        fun createRoute(id: String) = "tips_category/$id"
+        companion object { 
+            const val ROUTE = "tips_category/{categoryId}" 
+            fun createRoute(id: String) = "tips_category/$id"
+        }
     }
     object QuizHome : Screen("quiz_home")
     data class Quiz(val categoryId: String) : Screen("quiz/{categoryId}") {
-        companion object { const val ROUTE = "quiz/{categoryId}" }
-        fun createRoute(id: String) = "quiz/$id"
+        companion object { 
+            const val ROUTE = "quiz/{categoryId}" 
+            fun createRoute(id: String) = "quiz/$id"
+        }
     }
     data class QuizResult(val categoryId: String) : Screen("quiz_result/{categoryId}") {
-        companion object { const val ROUTE = "quiz_result/{categoryId}" }
-        fun createRoute(id: String) = "quiz_result/$id"
+        companion object { 
+            const val ROUTE = "quiz_result/{categoryId}" 
+            fun createRoute(id: String) = "quiz_result/$id"
+        }
     }
     object IceCalculator : Screen("ice_calculator")
     object CatchLogger : Screen("catch_logger")
