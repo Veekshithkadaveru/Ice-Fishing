@@ -39,6 +39,7 @@ sealed class Screen(val route: String) {
     }
     object IceCalculator : Screen("ice_calculator")
     object CatchLogger : Screen("catch_logger")
+    object CatchEntry : Screen("catch_entry")
     object TackleChecklist : Screen("tackle_checklist")
     object SearchResults : Screen("search_results?query={query}") {
         const val ROUTE = "search_results?query={query}"

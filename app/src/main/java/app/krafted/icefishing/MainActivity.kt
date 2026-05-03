@@ -27,6 +27,7 @@ import app.krafted.icefishing.ui.search.SearchResultsScreen
 import app.krafted.icefishing.ui.theme.IceFishingTheme
 import app.krafted.icefishing.ui.tips.TipsCategoryScreen
 import app.krafted.icefishing.ui.tips.TipsHomeScreen
+import app.krafted.icefishing.ui.tools.CatchEntryScreen
 import app.krafted.icefishing.ui.tools.CatchLoggerScreen
 import app.krafted.icefishing.ui.tools.IceCalculatorScreen
 import app.krafted.icefishing.ui.tools.TackleChecklistScreen
@@ -121,6 +122,9 @@ fun IceFishingNavHost() {
         }
         composable(Screen.CatchLogger.route) {
             CatchLoggerScreen(navController = navController)
+        }
+        composable(Screen.CatchEntry.route) {
+            CatchEntryScreen(navController = navController)
         }
         composable(Screen.TackleChecklist.route) {
             TackleChecklistScreen(navController = navController)
