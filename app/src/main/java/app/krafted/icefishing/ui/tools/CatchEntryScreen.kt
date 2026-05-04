@@ -54,16 +54,16 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import app.krafted.icefishing.data.db.entities.CatchEntry
 import app.krafted.icefishing.ui.assets.IceFishAssets
 import app.krafted.icefishing.ui.components.SnowfallBackground
+import app.krafted.icefishing.ui.theme.IceCyan
+import app.krafted.icefishing.ui.theme.iceColors
 import app.krafted.icefishing.viewmodel.CatchLoggerViewModel
 import app.krafted.icefishing.viewmodel.newSessionId
 import java.text.SimpleDateFormat
@@ -107,7 +107,7 @@ fun CatchEntryScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.5f))
+                .background(MaterialTheme.iceColors.scrim)
         )
 
         SnowfallBackground(modifier = Modifier.fillMaxSize())
@@ -118,10 +118,8 @@ fun CatchEntryScreen(
                     title = {
                         Text(
                             text = "Log a Catch",
-                            style = MaterialTheme.typography.titleLarge.copy(
-                                fontWeight = FontWeight.Bold
-                            ),
-                            color = Color.White
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     },
                     navigationIcon = {
@@ -129,13 +127,16 @@ fun CatchEntryScreen(
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back",
-                                tint = Color.White
+                                tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     },
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                         containerColor = Color.Transparent,
-                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f)
+                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f),
+                        titleContentColor = MaterialTheme.colorScheme.onBackground,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
+                        actionIconContentColor = MaterialTheme.colorScheme.onBackground
                     )
                 )
             },
@@ -161,10 +162,10 @@ fun CatchEntryScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clip(RoundedCornerShape(12.dp))
-                                .background(Color.White.copy(alpha = 0.08f))
+                                .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.08f))
                                 .border(
                                     width = 1.dp,
-                                    color = Color.White.copy(alpha = 0.25f),
+                                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.25f),
                                     shape = RoundedCornerShape(12.dp)
                                 )
                                 .clickable { showDatePicker = true }
@@ -177,13 +178,13 @@ fun CatchEntryScreen(
                                 Icon(
                                     imageVector = Icons.Default.DateRange,
                                     contentDescription = null,
-                                    tint = Color(0xFF4DD0E1)
+                                    tint = MaterialTheme.iceColors.cyan
                                 )
                                 Spacer(modifier = Modifier.width(12.dp))
                                 Text(
                                     text = dateFormat.format(Date(date)),
                                     style = MaterialTheme.typography.bodyLarge,
-                                    color = Color.White
+                                    color = MaterialTheme.colorScheme.onBackground
                                 )
                             }
                         }
@@ -199,10 +200,10 @@ fun CatchEntryScreen(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .clip(RoundedCornerShape(12.dp))
-                                    .background(Color.White.copy(alpha = 0.08f))
+                                    .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.08f))
                                     .border(
                                         width = 1.dp,
-                                        color = Color.White.copy(alpha = 0.25f),
+                                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.25f),
                                         shape = RoundedCornerShape(12.dp)
                                     )
                                     .clickable { speciesMenuOpen = true }
@@ -216,14 +217,14 @@ fun CatchEntryScreen(
                                         text = species.ifBlank { "Choose a species" },
                                         style = MaterialTheme.typography.bodyLarge,
                                         color = if (species.isBlank()) {
-                                            Color.White.copy(alpha = 0.5f)
-                                        } else Color.White,
+                                            MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
+                                        } else MaterialTheme.colorScheme.onBackground,
                                         modifier = Modifier.weight(1f)
                                     )
                                     Icon(
                                         imageVector = Icons.Default.ArrowDropDown,
                                         contentDescription = null,
-                                        tint = Color(0xFF4DD0E1)
+                                        tint = MaterialTheme.iceColors.cyan
                                     )
                                 }
                             }
@@ -336,18 +337,15 @@ fun CatchEntryScreen(
                             .height(56.dp),
                         shape = RoundedCornerShape(16.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF4DD0E1),
-                            contentColor = Color(0xFF0F172A),
-                            disabledContainerColor = Color.White.copy(alpha = 0.12f),
-                            disabledContentColor = Color.White.copy(alpha = 0.4f)
+                            containerColor = MaterialTheme.iceColors.cyan,
+                            contentColor = MaterialTheme.iceColors.cardBgStart,
+                            disabledContainerColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.12f),
+                            disabledContentColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.4f)
                         )
                     ) {
                         Text(
                             text = "Save Catch",
-                            style = MaterialTheme.typography.titleMedium.copy(
-                                fontWeight = FontWeight.ExtraBold,
-                                letterSpacing = 0.6.sp
-                            )
+                            style = MaterialTheme.typography.titleMedium
                         )
                     }
                 }
@@ -389,8 +387,8 @@ private fun FormPanel(content: @Composable () -> Unit) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color.White.copy(alpha = 0.3f),
-                        Color.White.copy(alpha = 0.05f)
+                        MaterialTheme.iceColors.borderStart,
+                        MaterialTheme.iceColors.borderEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
@@ -401,8 +399,8 @@ private fun FormPanel(content: @Composable () -> Unit) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color(0xFF0F172A).copy(alpha = 0.65f),
-                        Color(0xFF1E293B).copy(alpha = 0.45f)
+                        MaterialTheme.iceColors.cardBgStart,
+                        MaterialTheme.iceColors.cardBgEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY)
@@ -418,11 +416,8 @@ private fun FormPanel(content: @Composable () -> Unit) {
 private fun FieldLabel(text: String) {
     Text(
         text = text,
-        style = MaterialTheme.typography.labelLarge.copy(
-            fontWeight = FontWeight.ExtraBold,
-            letterSpacing = 0.5.sp
-        ),
-        color = Color(0xFFB3E5FC)
+        style = MaterialTheme.typography.labelLarge,
+        color = IceCyan
     )
 }
 
@@ -436,7 +431,7 @@ private fun NumericField(
         value = value,
         onValueChange = onValueChange,
         placeholder = {
-            Text(placeholder, color = Color.White.copy(alpha = 0.4f))
+            Text(placeholder, color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.4f))
         },
         singleLine = true,
         keyboardOptions = KeyboardOptions(
@@ -461,7 +456,7 @@ private fun TextField(
         value = value,
         onValueChange = onValueChange,
         placeholder = {
-            Text(placeholder, color = Color.White.copy(alpha = 0.4f))
+            Text(placeholder, color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.4f))
         },
         singleLine = singleLine,
         minLines = minLines,
@@ -473,9 +468,9 @@ private fun TextField(
 
 @Composable
 private fun fieldColors() = OutlinedTextFieldDefaults.colors(
-    focusedBorderColor = Color(0xFF4DD0E1),
-    unfocusedBorderColor = Color.White.copy(alpha = 0.3f),
-    focusedTextColor = Color.White,
-    unfocusedTextColor = Color.White,
-    cursorColor = Color(0xFF4DD0E1)
+    focusedBorderColor = MaterialTheme.iceColors.cyan,
+    unfocusedBorderColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.3f),
+    focusedTextColor = MaterialTheme.colorScheme.onBackground,
+    unfocusedTextColor = MaterialTheme.colorScheme.onBackground,
+    cursorColor = MaterialTheme.iceColors.cyan
 )

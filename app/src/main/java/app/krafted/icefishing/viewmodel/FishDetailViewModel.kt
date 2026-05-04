@@ -11,6 +11,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 sealed interface FishDetailUiState {
@@ -33,7 +34,7 @@ class FishDetailViewModel(
     init {
         when {
             speciesId <= 0 -> _state.value = FishDetailUiState.NotFound
-            else -> viewModelScope.launch {
+            else -> viewModelScope.launch(Dispatchers.IO) {
                 val species = repository.getSpeciesById(speciesId)
                 _state.value =
                     species?.let { FishDetailUiState.Ready(it) } ?: FishDetailUiState.NotFound

@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 sealed interface ArticleDetailUiState {
@@ -36,7 +37,7 @@ class ArticleDetailViewModel(
     init {
         when {
             articleId <= 0 -> _state.value = ArticleDetailUiState.NotFound
-            else -> viewModelScope.launch {
+            else -> viewModelScope.launch(Dispatchers.IO) {
                 val article = repository.getArticleById(articleId)
                 val isBookmarked = repository.isBookmarked(articleId).first()
                 _state.value = article?.let {

@@ -54,14 +54,14 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import app.krafted.icefishing.ui.assets.IceFishAssets
 import app.krafted.icefishing.ui.components.SnowfallBackground
+import app.krafted.icefishing.ui.theme.IceCyan
+import app.krafted.icefishing.ui.theme.iceColors
 import app.krafted.icefishing.viewmodel.ChecklistGroup
 import app.krafted.icefishing.viewmodel.ChecklistRow
 import app.krafted.icefishing.viewmodel.ChecklistViewModel
@@ -87,7 +87,7 @@ fun TackleChecklistScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.5f))
+                .background(MaterialTheme.iceColors.scrim)
         )
 
         SnowfallBackground(modifier = Modifier.fillMaxSize())
@@ -98,10 +98,8 @@ fun TackleChecklistScreen(
                     title = {
                         Text(
                             text = "Tackle Checklist",
-                            style = MaterialTheme.typography.titleLarge.copy(
-                                fontWeight = FontWeight.Bold
-                            ),
-                            color = Color.White
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     },
                     navigationIcon = {
@@ -109,7 +107,7 @@ fun TackleChecklistScreen(
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back",
-                                tint = Color.White
+                                tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     },
@@ -118,13 +116,16 @@ fun TackleChecklistScreen(
                             Icon(
                                 imageVector = Icons.Default.Refresh,
                                 contentDescription = "Reset checklist",
-                                tint = Color.White
+                                tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     },
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                         containerColor = Color.Transparent,
-                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f)
+                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f),
+                        titleContentColor = MaterialTheme.colorScheme.onBackground,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
+                        actionIconContentColor = MaterialTheme.colorScheme.onBackground
                     )
                 )
             },
@@ -137,7 +138,7 @@ fun TackleChecklistScreen(
                         .padding(padding),
                     contentAlignment = Alignment.Center
                 ) {
-                    CircularProgressIndicator(color = Color.White)
+                    CircularProgressIndicator(color = MaterialTheme.colorScheme.onBackground)
                 }
             } else {
                 LazyColumn(
@@ -191,7 +192,7 @@ fun TackleChecklistScreen(
                         viewModel.resetAll()
                         showResetDialog = false
                     }) {
-                        Text("Reset", color = Color(0xFFFF8A80))
+                        Text("Reset", color = MaterialTheme.iceColors.danger)
                     }
                 },
                 dismissButton = {
@@ -199,9 +200,9 @@ fun TackleChecklistScreen(
                         Text("Cancel")
                     }
                 },
-                containerColor = Color(0xFF0F172A),
-                titleContentColor = Color.White,
-                textContentColor = Color(0xFFB3E5FC)
+                containerColor = MaterialTheme.iceColors.cardBgStart,
+                titleContentColor = MaterialTheme.colorScheme.onBackground,
+                textContentColor = MaterialTheme.iceColors.cyanLight
             )
         }
     }
@@ -239,8 +240,8 @@ private fun SummaryPanel(checked: Int, total: Int) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color.White.copy(alpha = 0.3f),
-                        Color.White.copy(alpha = 0.05f)
+                        MaterialTheme.iceColors.borderStart,
+                        MaterialTheme.iceColors.borderEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
@@ -251,8 +252,8 @@ private fun SummaryPanel(checked: Int, total: Int) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color(0xFF0F172A).copy(alpha = 0.65f),
-                        Color(0xFF1E293B).copy(alpha = 0.45f)
+                        MaterialTheme.iceColors.cardBgStart,
+                        MaterialTheme.iceColors.cardBgEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY)
@@ -268,18 +269,13 @@ private fun SummaryPanel(checked: Int, total: Int) {
             ) {
                 Text(
                     text = "Pack Status",
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.ExtraBold,
-                        letterSpacing = 0.4.sp
-                    ),
-                    color = Color.White
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
                     text = "$checked of $total packed",
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.Black
-                    ),
-                    color = Color(0xFF7DD8FF)
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.iceColors.cyanLight
                 )
             }
             Spacer(modifier = Modifier.height(12.dp))
@@ -289,8 +285,8 @@ private fun SummaryPanel(checked: Int, total: Int) {
                     .fillMaxWidth()
                     .height(6.dp)
                     .clip(RoundedCornerShape(3.dp)),
-                color = Color(0xFF4DD0E1),
-                trackColor = Color.White.copy(alpha = 0.15f)
+                color = MaterialTheme.iceColors.cyan,
+                trackColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.15f)
             )
         }
     }
@@ -307,8 +303,8 @@ private fun GroupHeaderCard(group: ChecklistGroup) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color.White.copy(alpha = 0.25f),
-                        Color.White.copy(alpha = 0.04f)
+                        MaterialTheme.colorScheme.onBackground.copy(alpha = 0.25f),
+                        MaterialTheme.colorScheme.onBackground.copy(alpha = 0.04f)
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
@@ -319,8 +315,8 @@ private fun GroupHeaderCard(group: ChecklistGroup) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color(0xFF0F172A).copy(alpha = 0.6f),
-                        Color(0xFF1E293B).copy(alpha = 0.4f)
+                        MaterialTheme.iceColors.cardBgStart.copy(alpha = 0.6f),
+                        MaterialTheme.iceColors.cardBgEnd.copy(alpha = 0.4f)
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY)
@@ -335,18 +331,13 @@ private fun GroupHeaderCard(group: ChecklistGroup) {
         ) {
             Text(
                 text = group.groupName,
-                style = MaterialTheme.typography.titleMedium.copy(
-                    fontWeight = FontWeight.ExtraBold,
-                    letterSpacing = 0.4.sp
-                ),
-                color = Color.White
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onBackground
             )
             Text(
                 text = "${group.checkedCount}/${group.totalCount}",
-                style = MaterialTheme.typography.labelLarge.copy(
-                    fontWeight = FontWeight.Bold
-                ),
-                color = Color(0xFF4DD0E1)
+                style = MaterialTheme.typography.labelLarge,
+                color = IceCyan
             )
         }
     }
@@ -363,8 +354,8 @@ private fun ChecklistItemCard(row: ChecklistRow, onToggle: (Boolean) -> Unit) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color.White.copy(alpha = 0.3f),
-                        Color.White.copy(alpha = 0.05f)
+                        MaterialTheme.iceColors.borderStart,
+                        MaterialTheme.iceColors.borderEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
@@ -375,8 +366,8 @@ private fun ChecklistItemCard(row: ChecklistRow, onToggle: (Boolean) -> Unit) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color(0xFF0F172A).copy(alpha = 0.65f),
-                        Color(0xFF1E293B).copy(alpha = 0.45f)
+                        MaterialTheme.iceColors.cardBgStart,
+                        MaterialTheme.iceColors.cardBgEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY)
@@ -398,8 +389,8 @@ private fun ChecklistItemCard(row: ChecklistRow, onToggle: (Boolean) -> Unit) {
                         if (row.checked) {
                             Brush.radialGradient(
                                 colors = listOf(
-                                    Color(0xFF4DD0E1).copy(alpha = 0.55f),
-                                    Color(0xFF4DD0E1).copy(alpha = 0.15f)
+                                    MaterialTheme.iceColors.cyan.copy(alpha = 0.55f),
+                                    MaterialTheme.iceColors.cyan.copy(alpha = 0.15f)
                                 ),
                                 radius = 80f
                             )
@@ -416,8 +407,8 @@ private fun ChecklistItemCard(row: ChecklistRow, onToggle: (Boolean) -> Unit) {
                         width = 1.dp,
                         brush = Brush.linearGradient(
                             colors = listOf(
-                                Color(0xFF4DD0E1).copy(alpha = 0.9f),
-                                Color(0xFF4DD0E1).copy(alpha = 0.1f)
+                                MaterialTheme.iceColors.cyan.copy(alpha = 0.9f),
+                                MaterialTheme.iceColors.cyan.copy(alpha = 0.1f)
                             )
                         ),
                         shape = CircleShape
@@ -428,7 +419,7 @@ private fun ChecklistItemCard(row: ChecklistRow, onToggle: (Boolean) -> Unit) {
                     Icon(
                         imageVector = Icons.Default.Check,
                         contentDescription = null,
-                        tint = Color.White,
+                        tint = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.size(20.dp)
                     )
                 }
@@ -439,10 +430,9 @@ private fun ChecklistItemCard(row: ChecklistRow, onToggle: (Boolean) -> Unit) {
             Text(
                 text = row.name,
                 style = MaterialTheme.typography.bodyLarge.copy(
-                    fontWeight = FontWeight.Medium,
                     textDecoration = if (row.checked) TextDecoration.LineThrough else TextDecoration.None
                 ),
-                color = if (row.checked) Color.White.copy(alpha = 0.55f) else Color.White,
+                color = if (row.checked) MaterialTheme.colorScheme.onBackground.copy(alpha = 0.55f) else MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.weight(1f)
             )
         }

@@ -46,7 +46,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -54,6 +53,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import app.krafted.icefishing.ui.assets.IceFishAssets
 import app.krafted.icefishing.ui.components.SnowfallBackground
+import app.krafted.icefishing.ui.theme.IceDanger
+import app.krafted.icefishing.ui.theme.IceSuccess
+import app.krafted.icefishing.ui.theme.IceWarning
+import app.krafted.icefishing.ui.theme.iceColors
 import app.krafted.icefishing.viewmodel.IceCalculatorUiState
 import app.krafted.icefishing.viewmodel.IceCalculatorViewModel
 import app.krafted.icefishing.viewmodel.IceSafetyResult
@@ -80,7 +83,7 @@ fun IceCalculatorScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.5f))
+                .background(MaterialTheme.iceColors.scrim)
         )
 
         SnowfallBackground(modifier = Modifier.fillMaxSize())
@@ -91,10 +94,8 @@ fun IceCalculatorScreen(
                     title = {
                         Text(
                             text = "Ice Safety Calculator",
-                            style = MaterialTheme.typography.titleLarge.copy(
-                                fontWeight = FontWeight.Bold
-                            ),
-                            color = Color.White
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     },
                     navigationIcon = {
@@ -102,13 +103,16 @@ fun IceCalculatorScreen(
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back",
-                                tint = Color.White
+                                tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     },
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                         containerColor = Color.Transparent,
-                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f)
+                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f),
+                        titleContentColor = MaterialTheme.colorScheme.onBackground,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
+                        actionIconContentColor = MaterialTheme.colorScheme.onBackground
                     )
                 )
             },
@@ -166,7 +170,7 @@ private fun HeaderIcon() {
             .background(
                 Brush.radialGradient(
                     colors = listOf(
-                        Color(0xFF4DD0E1).copy(alpha = 0.4f),
+                        MaterialTheme.iceColors.cyan.copy(alpha = 0.4f),
                         Color.Transparent
                     ),
                     radius = 140f
@@ -176,8 +180,8 @@ private fun HeaderIcon() {
                 width = 1.dp,
                 brush = Brush.linearGradient(
                     colors = listOf(
-                        Color(0xFF4DD0E1).copy(alpha = 0.9f),
-                        Color(0xFF4DD0E1).copy(alpha = 0.1f)
+                        MaterialTheme.iceColors.cyan.copy(alpha = 0.9f),
+                        MaterialTheme.iceColors.cyan.copy(alpha = 0.1f)
                     )
                 ),
                 shape = CircleShape
@@ -203,8 +207,8 @@ private fun FrostedPanel(content: @Composable () -> Unit) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color.White.copy(alpha = 0.3f),
-                        Color.White.copy(alpha = 0.05f)
+                        MaterialTheme.iceColors.borderStart,
+                        MaterialTheme.iceColors.borderEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
@@ -215,8 +219,8 @@ private fun FrostedPanel(content: @Composable () -> Unit) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color(0xFF0F172A).copy(alpha = 0.65f),
-                        Color(0xFF1E293B).copy(alpha = 0.45f)
+                        MaterialTheme.iceColors.cardBgStart,
+                        MaterialTheme.iceColors.cardBgEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY)
@@ -236,11 +240,8 @@ private fun ThicknessSection(
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
             text = "Ice Thickness",
-            style = MaterialTheme.typography.titleMedium.copy(
-                fontWeight = FontWeight.ExtraBold,
-                letterSpacing = 0.4.sp
-            ),
-            color = Color.White
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onBackground
         )
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -252,16 +253,14 @@ private fun ThicknessSection(
         ) {
             Text(
                 text = thicknessCm.toString(),
-                style = MaterialTheme.typography.displayMedium.copy(
-                    fontWeight = FontWeight.Black
-                ),
-                color = Color(0xFF7DD8FF)
+                style = MaterialTheme.typography.displayMedium,
+                color = MaterialTheme.iceColors.cyanLight
             )
             Spacer(modifier = Modifier.width(4.dp))
             Text(
                 text = "cm",
                 style = MaterialTheme.typography.titleLarge,
-                color = Color(0xFFB3E5FC).copy(alpha = 0.8f),
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 10.dp)
             )
         }
@@ -272,9 +271,9 @@ private fun ThicknessSection(
             valueRange = 1f..60f,
             steps = 58,
             colors = SliderDefaults.colors(
-                thumbColor = Color.White,
-                activeTrackColor = Color(0xFF4DD0E1),
-                inactiveTrackColor = Color.White.copy(alpha = 0.22f),
+                thumbColor = MaterialTheme.colorScheme.onBackground,
+                activeTrackColor = MaterialTheme.iceColors.cyan,
+                inactiveTrackColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.22f),
                 activeTickColor = Color.Transparent,
                 inactiveTickColor = Color.Transparent
             )
@@ -287,12 +286,12 @@ private fun ThicknessSection(
             Text(
                 text = "1cm",
                 style = MaterialTheme.typography.labelSmall,
-                color = Color(0xFFB3E5FC).copy(alpha = 0.6f)
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Text(
                 text = "60cm",
                 style = MaterialTheme.typography.labelSmall,
-                color = Color(0xFFB3E5FC).copy(alpha = 0.6f)
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
     }
@@ -306,11 +305,8 @@ private fun IceTypeSection(
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
             text = "Ice Type",
-            style = MaterialTheme.typography.titleMedium.copy(
-                fontWeight = FontWeight.ExtraBold,
-                letterSpacing = 0.4.sp
-            ),
-            color = Color.White
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onBackground
         )
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -370,13 +366,13 @@ private fun IceTypeOption(
                 if (selected) {
                     accent.copy(alpha = 0.24f)
                 } else {
-                    Color.White.copy(alpha = 0.06f)
+                    MaterialTheme.colorScheme.onBackground.copy(alpha = 0.06f)
                 }
             )
             .border(
                 border = BorderStroke(
                     width = if (selected) 2.dp else 1.dp,
-                    color = if (selected) accent else Color.White.copy(alpha = 0.15f)
+                    color = if (selected) accent else MaterialTheme.colorScheme.onBackground.copy(alpha = 0.15f)
                 ),
                 shape = shape
             )
@@ -387,10 +383,8 @@ private fun IceTypeOption(
     ) {
         Text(
             text = title,
-            style = MaterialTheme.typography.labelLarge.copy(
-                fontWeight = FontWeight.ExtraBold
-            ),
-            color = Color.White,
+            style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.onBackground,
             textAlign = TextAlign.Center,
             maxLines = 1
         )
@@ -398,7 +392,7 @@ private fun IceTypeOption(
         Text(
             text = subtitle,
             style = MaterialTheme.typography.labelSmall,
-            color = Color(0xFFB3E5FC).copy(alpha = 0.7f),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center,
             maxLines = 1
         )
@@ -457,10 +451,7 @@ private fun ResultPanel(state: IceCalculatorUiState) {
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = result.label,
-                style = MaterialTheme.typography.headlineSmall.copy(
-                    fontWeight = FontWeight.Black,
-                    letterSpacing = 1.5.sp
-                ),
+                style = MaterialTheme.typography.headlineSmall,
                 color = accent,
                 textAlign = TextAlign.Center
             )
@@ -474,10 +465,8 @@ private fun ResultPanel(state: IceCalculatorUiState) {
             ) {
                 Text(
                     text = "Effective thickness: ${result.effectiveThicknessCm} cm",
-                    style = MaterialTheme.typography.labelLarge.copy(
-                        fontWeight = FontWeight.Bold
-                    ),
-                    color = Color.White.copy(alpha = 0.9f),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.9f),
                     textAlign = TextAlign.Center
                 )
             }
@@ -491,14 +480,14 @@ private fun ResultPanel(state: IceCalculatorUiState) {
                     Icon(
                         imageVector = Icons.Default.Info,
                         contentDescription = null,
-                        tint = Color(0xFFB3E5FC).copy(alpha = 0.8f),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.size(14.dp)
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
                         text = "White ice counts as half strength",
                         style = MaterialTheme.typography.labelSmall,
-                        color = Color(0xFFB3E5FC).copy(alpha = 0.8f)
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             }
@@ -506,10 +495,8 @@ private fun ResultPanel(state: IceCalculatorUiState) {
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = result.advice,
-                style = MaterialTheme.typography.bodyLarge.copy(
-                    fontWeight = FontWeight.Medium
-                ),
-                color = Color.White,
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onBackground,
                 textAlign = TextAlign.Center,
                 lineHeight = 24.sp
             )
@@ -517,11 +504,12 @@ private fun ResultPanel(state: IceCalculatorUiState) {
     }
 }
 
+@Composable
 private fun IceSafetyResult.warningColor(): Color = when (warningLevel) {
-    WarningLevel.DANGER -> Color(0xFFFF5252)
-    WarningLevel.CAUTION -> Color(0xFFFFC107)
-    WarningLevel.SAFE -> Color(0xFF69F0AE)
-    WarningLevel.VERY_SAFE -> Color(0xFF00E676)
+    WarningLevel.DANGER -> IceDanger
+    WarningLevel.CAUTION -> IceWarning
+    WarningLevel.SAFE -> IceSuccess
+    WarningLevel.VERY_SAFE -> IceSuccess
 }
 
 private fun IceSafetyResult.icon() = when (warningLevel) {

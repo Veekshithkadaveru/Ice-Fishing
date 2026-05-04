@@ -55,15 +55,16 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import app.krafted.icefishing.data.db.entities.CatchEntry
 import app.krafted.icefishing.navigation.Screen
 import app.krafted.icefishing.ui.assets.IceFishAssets
 import app.krafted.icefishing.ui.components.SnowfallBackground
+import app.krafted.icefishing.ui.theme.IceCyan
+import app.krafted.icefishing.ui.theme.IceCyanLight
+import app.krafted.icefishing.ui.theme.iceColors
 import app.krafted.icefishing.viewmodel.CatchLoggerViewModel
 import app.krafted.icefishing.viewmodel.CatchSummary
 import app.krafted.icefishing.viewmodel.DateRange
@@ -91,7 +92,7 @@ fun CatchLoggerScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.5f))
+                .background(MaterialTheme.iceColors.scrim)
         )
 
         SnowfallBackground(modifier = Modifier.fillMaxSize())
@@ -102,10 +103,8 @@ fun CatchLoggerScreen(
                     title = {
                         Text(
                             text = "Catch Logger",
-                            style = MaterialTheme.typography.titleLarge.copy(
-                                fontWeight = FontWeight.Bold
-                            ),
-                            color = Color.White
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     },
                     navigationIcon = {
@@ -113,21 +112,24 @@ fun CatchLoggerScreen(
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back",
-                                tint = Color.White
+                                tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     },
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                         containerColor = Color.Transparent,
-                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f)
+                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f),
+                        titleContentColor = MaterialTheme.colorScheme.onBackground,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
+                        actionIconContentColor = MaterialTheme.colorScheme.onBackground
                     )
                 )
             },
             floatingActionButton = {
                 FloatingActionButton(
                     onClick = { navController.navigate(Screen.CatchEntry.route) },
-                    containerColor = Color(0xFF4DD0E1),
-                    contentColor = Color(0xFF0F172A)
+                    containerColor = MaterialTheme.iceColors.cyan,
+                    contentColor = MaterialTheme.iceColors.cardBgStart
                 ) {
                     Icon(
                         imageVector = Icons.Default.Add,
@@ -206,8 +208,8 @@ private fun SummaryPanel(summary: CatchSummary) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color.White.copy(alpha = 0.3f),
-                        Color.White.copy(alpha = 0.05f)
+                        MaterialTheme.iceColors.borderStart,
+                        MaterialTheme.iceColors.borderEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
@@ -218,8 +220,8 @@ private fun SummaryPanel(summary: CatchSummary) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color(0xFF0F172A).copy(alpha = 0.65f),
-                        Color(0xFF1E293B).copy(alpha = 0.45f)
+                        MaterialTheme.iceColors.cardBgStart,
+                        MaterialTheme.iceColors.cardBgEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY)
@@ -230,11 +232,8 @@ private fun SummaryPanel(summary: CatchSummary) {
         Column {
             Text(
                 text = "Season Summary",
-                style = MaterialTheme.typography.titleMedium.copy(
-                    fontWeight = FontWeight.ExtraBold,
-                    letterSpacing = 0.4.sp
-                ),
-                color = Color.White
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onBackground
             )
             Spacer(modifier = Modifier.height(12.dp))
             Row(
@@ -278,17 +277,15 @@ private fun StatBlock(
     ) {
         Text(
             text = value,
-            style = MaterialTheme.typography.titleLarge.copy(
-                fontWeight = FontWeight.Black
-            ),
-            color = Color(0xFF7DD8FF),
+            style = MaterialTheme.typography.titleLarge,
+            color = IceCyanLight,
             maxLines = 1
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = label,
             style = MaterialTheme.typography.labelSmall,
-            color = Color(0xFFB3E5FC).copy(alpha = 0.75f)
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
     }
 }
@@ -351,17 +348,17 @@ private fun FilterPill(
     FilterChip(
         selected = selected,
         onClick = onClick,
-        label = { Text(label, color = Color.White) },
+        label = { Text(label, color = MaterialTheme.colorScheme.onBackground) },
         colors = FilterChipDefaults.filterChipColors(
             containerColor = Color.Transparent,
-            selectedContainerColor = Color(0xFF4DD0E1).copy(alpha = 0.2f),
-            selectedLabelColor = Color.White
+            selectedContainerColor = MaterialTheme.iceColors.cyan.copy(alpha = 0.2f),
+            selectedLabelColor = MaterialTheme.colorScheme.onBackground
         ),
         border = FilterChipDefaults.filterChipBorder(
             enabled = true,
             selected = selected,
-            borderColor = Color.White.copy(alpha = 0.5f),
-            selectedBorderColor = Color(0xFF4DD0E1)
+            borderColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
+            selectedBorderColor = MaterialTheme.iceColors.cyan
         )
     )
 }
@@ -381,8 +378,8 @@ private fun CatchCard(
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color.White.copy(alpha = 0.3f),
-                        Color.White.copy(alpha = 0.05f)
+                        MaterialTheme.iceColors.borderStart,
+                        MaterialTheme.iceColors.borderEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
@@ -393,8 +390,8 @@ private fun CatchCard(
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color(0xFF0F172A).copy(alpha = 0.65f),
-                        Color(0xFF1E293B).copy(alpha = 0.45f)
+                        MaterialTheme.iceColors.cardBgStart,
+                        MaterialTheme.iceColors.cardBgEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY)
@@ -414,7 +411,7 @@ private fun CatchCard(
                     .background(
                         Brush.radialGradient(
                             colors = listOf(
-                                Color(0xFF4DD0E1).copy(alpha = 0.4f),
+                                MaterialTheme.iceColors.cyan.copy(alpha = 0.4f),
                                 Color.Transparent
                             ),
                             radius = 100f
@@ -424,8 +421,8 @@ private fun CatchCard(
                         width = 1.dp,
                         brush = Brush.linearGradient(
                             colors = listOf(
-                                Color(0xFF4DD0E1).copy(alpha = 0.9f),
-                                Color(0xFF4DD0E1).copy(alpha = 0.1f)
+                                MaterialTheme.iceColors.cyan.copy(alpha = 0.9f),
+                                MaterialTheme.iceColors.cyan.copy(alpha = 0.1f)
                             )
                         ),
                         shape = CircleShape
@@ -434,10 +431,8 @@ private fun CatchCard(
             ) {
                 Text(
                     text = entry.count.toString(),
-                    style = MaterialTheme.typography.titleLarge.copy(
-                        fontWeight = FontWeight.Black
-                    ),
-                    color = Color.White
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             }
 
@@ -446,30 +441,27 @@ private fun CatchCard(
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = entry.fishSpecies,
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.ExtraBold,
-                        letterSpacing = 0.4.sp
-                    ),
-                    color = Color.White
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
                     text = dateFormat.format(Date(entry.date)),
                     style = MaterialTheme.typography.labelMedium,
-                    color = Color(0xFF4DD0E1)
+                    color = IceCyan
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = buildMetaLine(entry),
                     style = MaterialTheme.typography.bodySmall,
-                    color = Color(0xFFB3E5FC).copy(alpha = 0.8f)
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 if (entry.notes.isNotBlank()) {
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(
                         text = entry.notes,
                         style = MaterialTheme.typography.bodySmall,
-                        color = Color.White.copy(alpha = 0.85f)
+                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.85f)
                     )
                 }
             }
@@ -478,7 +470,7 @@ private fun CatchCard(
                 Icon(
                     imageVector = Icons.Default.Delete,
                     contentDescription = "Delete entry",
-                    tint = Color(0xFFFF8A80)
+                    tint = MaterialTheme.iceColors.danger
                 )
             }
         }
@@ -500,10 +492,10 @@ private fun EmptyStateCard() {
         modifier = Modifier
             .fillMaxWidth()
             .clip(cardShape)
-            .background(Color.White.copy(alpha = 0.06f))
+            .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.06f))
             .border(
                 width = 1.dp,
-                color = Color.White.copy(alpha = 0.15f),
+                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.15f),
                 shape = cardShape
             )
             .padding(28.dp),
@@ -512,16 +504,14 @@ private fun EmptyStateCard() {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 text = "No catches logged yet",
-                style = MaterialTheme.typography.titleMedium.copy(
-                    fontWeight = FontWeight.Bold
-                ),
-                color = Color.White
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onBackground
             )
             Spacer(modifier = Modifier.height(6.dp))
             Text(
                 text = "Tap the + button to log your first catch",
                 style = MaterialTheme.typography.bodySmall,
-                color = Color(0xFFB3E5FC).copy(alpha = 0.7f)
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
     }

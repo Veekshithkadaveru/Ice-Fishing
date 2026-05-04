@@ -18,7 +18,7 @@ class ChecklistRepository(
         if (cachedItems == null) {
             cachedItems = loadJsonAsset<List<ChecklistItemData>>(context, gson, "checklist.json")
         }
-        return cachedItems!!
+        return cachedItems ?: emptyList()
     }
 
     fun getCheckedStates(): Flow<List<ChecklistItem>> = checklistDao.getAll()

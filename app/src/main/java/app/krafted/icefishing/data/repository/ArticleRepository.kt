@@ -19,7 +19,7 @@ class ArticleRepository(
         if (cachedArticles == null) {
             cachedArticles = loadJsonAsset<List<Article>>(context, gson, "articles.json")
         }
-        return cachedArticles!!
+        return cachedArticles ?: emptyList()
     }
 
     suspend fun getArticleById(id: Int): Article? {

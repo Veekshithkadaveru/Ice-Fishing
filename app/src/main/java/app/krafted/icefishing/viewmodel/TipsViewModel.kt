@@ -60,12 +60,4 @@ class TipsViewModel(application: Application) : AndroidViewModel(application) {
 
         _state.value = TipsUiState.Ready(categories, tipsByCategory)
     }
-
-    fun getTipsForCategory(categoryId: String): List<Tip> {
-        return (state.value as? TipsUiState.Ready)?.tipsByCategory?.get(categoryId) ?: emptyList()
-    }
-
-    fun getCategoryName(categoryId: String): String {
-        return (state.value as? TipsUiState.Ready)?.categories?.find { it.categoryId == categoryId }?.categoryName ?: categoryId
-    }
 }

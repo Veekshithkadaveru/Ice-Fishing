@@ -11,7 +11,7 @@ class SpeciesRepository(private val context: Context, private val gson: Gson) {
         if (cachedSpecies == null) {
             cachedSpecies = loadJsonAsset<List<Species>>(context, gson, "species.json")
         }
-        return cachedSpecies!!
+        return cachedSpecies ?: emptyList()
     }
 
     suspend fun getSpeciesById(id: Int): Species? {

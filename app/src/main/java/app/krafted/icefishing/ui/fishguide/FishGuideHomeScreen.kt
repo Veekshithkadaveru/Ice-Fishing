@@ -20,7 +20,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -43,17 +43,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import app.krafted.icefishing.navigation.Screen
 import app.krafted.icefishing.ui.assets.IceFishAssets
 import app.krafted.icefishing.ui.components.SnowfallBackground
+import app.krafted.icefishing.ui.theme.IceOnBackground
+import app.krafted.icefishing.ui.theme.iceColors
 import app.krafted.icefishing.viewmodel.FishGuideUiState
 import app.krafted.icefishing.viewmodel.FishGuideViewModel
 import kotlinx.coroutines.delay
@@ -77,7 +78,7 @@ fun FishGuideHomeScreen(navController: NavController) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.5f))
+                .background(MaterialTheme.iceColors.scrim)
         )
 
         SnowfallBackground(modifier = Modifier.fillMaxSize())
@@ -88,24 +89,25 @@ fun FishGuideHomeScreen(navController: NavController) {
                     title = {
                         Text(
                             text = "Fish Guide",
-                            style = MaterialTheme.typography.titleLarge.copy(
-                                fontWeight = FontWeight.Bold
-                            ),
-                            color = Color.White
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     },
                     navigationIcon = {
                         IconButton(onClick = { navController.popBackStack() }) {
                             Icon(
-                                imageVector = Icons.Filled.ArrowBack,
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back",
-                                tint = Color.White
+                                tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     },
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                         containerColor = Color.Transparent,
-                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f)
+                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f),
+                        titleContentColor = MaterialTheme.colorScheme.onBackground,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
+                        actionIconContentColor = MaterialTheme.colorScheme.onBackground
                     )
                 )
             },
@@ -118,7 +120,7 @@ fun FishGuideHomeScreen(navController: NavController) {
                         .padding(padding),
                     contentAlignment = Alignment.Center,
                 ) {
-                    CircularProgressIndicator(color = Color.White)
+                    CircularProgressIndicator(color = MaterialTheme.colorScheme.onBackground)
                 }
 
                 is FishGuideUiState.Ready -> LazyVerticalGrid(
@@ -137,11 +139,11 @@ fun FishGuideHomeScreen(navController: NavController) {
                             delay(index * 50L)
                             isVisible = true
                         }
-                        
+
                         val accent = runCatching {
                             Color(AndroidColor.parseColor(species.accentColor))
-                        }.getOrElse { Color(0xFF4DD0E1) }
-                        
+                        }.getOrElse { MaterialTheme.iceColors.cyan }
+
                         AnimatedVisibility(
                             visible = isVisible,
                             enter = fadeIn(tween(500)) + slideInVertically(
@@ -157,8 +159,8 @@ fun FishGuideHomeScreen(navController: NavController) {
                                     .background(
                                         Brush.linearGradient(
                                             colors = listOf(
-                                                Color.White.copy(alpha = 0.3f),
-                                                Color.White.copy(alpha = 0.05f)
+                                                MaterialTheme.iceColors.borderStart,
+                                                MaterialTheme.iceColors.borderEnd
                                             ),
                                             start = Offset(0f, 0f),
                                             end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
@@ -169,8 +171,8 @@ fun FishGuideHomeScreen(navController: NavController) {
                                     .background(
                                         Brush.linearGradient(
                                             colors = listOf(
-                                                Color(0xFF0F172A).copy(alpha = 0.65f),
-                                                Color(0xFF1E293B).copy(alpha = 0.45f)
+                                                MaterialTheme.iceColors.cardBgStart,
+                                                MaterialTheme.iceColors.cardBgEnd
                                             ),
                                             start = Offset(0f, 0f),
                                             end = Offset(0f, Float.POSITIVE_INFINITY)
@@ -195,9 +197,13 @@ fun FishGuideHomeScreen(navController: NavController) {
                                     Text(
                                         text = species.name,
                                         style = MaterialTheme.typography.titleMedium.copy(
-                                            fontWeight = FontWeight.Bold
+                                            shadow = Shadow(
+                                                color = accent.copy(alpha = 0.8f),
+                                                offset = Offset(0f, 0f),
+                                                blurRadius = 8f
+                                            )
                                         ),
-                                        color = accent,
+                                        color = Color.White,
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis,
                                     )
@@ -205,7 +211,7 @@ fun FishGuideHomeScreen(navController: NavController) {
                                     Text(
                                         text = "Peak: $peak",
                                         style = MaterialTheme.typography.bodySmall,
-                                        color = Color.White.copy(alpha = 0.8f),
+                                        color = IceOnBackground,
                                         maxLines = 2,
                                         overflow = TextOverflow.Ellipsis,
                                     )

@@ -14,7 +14,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -40,16 +40,19 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import app.krafted.icefishing.data.model.Species
 import app.krafted.icefishing.ui.assets.IceFishAssets
 import app.krafted.icefishing.ui.components.SnowfallBackground
+import app.krafted.icefishing.ui.theme.IceCyan
+import app.krafted.icefishing.ui.theme.IceOnBackground
+import app.krafted.icefishing.ui.theme.iceColors
 import app.krafted.icefishing.viewmodel.FishDetailUiState
 import app.krafted.icefishing.viewmodel.FishDetailViewModel
 import kotlin.runCatching
@@ -77,7 +80,7 @@ fun FishDetailScreen(speciesId: Int, navController: NavController) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.5f))
+                .background(MaterialTheme.iceColors.scrim)
         )
 
         SnowfallBackground(modifier = Modifier.fillMaxSize())
@@ -85,25 +88,28 @@ fun FishDetailScreen(speciesId: Int, navController: NavController) {
         Scaffold(
             topBar = {
                 CenterAlignedTopAppBar(
-                    title = { 
+                    title = {
                         Text(
                             text = "Fish Guide",
-                            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-                            color = Color.White
-                        ) 
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.onBackground
+                        )
                     },
                     navigationIcon = {
                         IconButton(onClick = { navController.popBackStack() }) {
                             Icon(
-                                imageVector = Icons.Filled.ArrowBack,
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back",
-                                tint = Color.White
+                                tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     },
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                         containerColor = Color.Transparent,
-                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f)
+                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f),
+                        titleContentColor = MaterialTheme.colorScheme.onBackground,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
+                        actionIconContentColor = MaterialTheme.colorScheme.onBackground
                     )
                 )
             },
@@ -116,7 +122,7 @@ fun FishDetailScreen(speciesId: Int, navController: NavController) {
                         .padding(padding),
                     contentAlignment = Alignment.Center,
                 ) {
-                    CircularProgressIndicator(color = Color.White)
+                    CircularProgressIndicator(color = MaterialTheme.colorScheme.onBackground)
                 }
 
                 is FishDetailUiState.NotFound -> Box(
@@ -125,13 +131,17 @@ fun FishDetailScreen(speciesId: Int, navController: NavController) {
                         .padding(padding),
                     contentAlignment = Alignment.Center,
                 ) {
-                    Text("Species not found.", style = MaterialTheme.typography.bodyLarge, color = Color.White)
+                    Text(
+                        "Species not found.",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
                 }
 
                 is FishDetailUiState.Ready -> {
                     val accent = runCatching {
                         Color(AndroidColor.parseColor(s.species.accentColor))
-                    }.getOrElse { Color(0xFF4DD0E1) }
+                    }.getOrElse { MaterialTheme.iceColors.cyan }
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
@@ -141,7 +151,7 @@ fun FishDetailScreen(speciesId: Int, navController: NavController) {
                         TabRow(
                             selectedTabIndex = selectedTab,
                             containerColor = Color.Black.copy(alpha = 0.4f),
-                            contentColor = Color.White,
+                            contentColor = MaterialTheme.colorScheme.onBackground,
                             indicator = { tabPositions ->
                                 TabRowDefaults.SecondaryIndicator(
                                     modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTab]),
@@ -152,17 +162,32 @@ fun FishDetailScreen(speciesId: Int, navController: NavController) {
                             Tab(
                                 selected = selectedTab == 0,
                                 onClick = { selectedTab = 0 },
-                                text = { Text("Habitat", color = if (selectedTab == 0) accent else Color.White) },
+                                text = {
+                                    Text(
+                                        "Habitat",
+                                        color = if (selectedTab == 0) accent else MaterialTheme.colorScheme.onBackground
+                                    )
+                                },
                             )
                             Tab(
                                 selected = selectedTab == 1,
                                 onClick = { selectedTab = 1 },
-                                text = { Text("Bait & tackle", color = if (selectedTab == 1) accent else Color.White) },
+                                text = {
+                                    Text(
+                                        "Bait & tackle",
+                                        color = if (selectedTab == 1) accent else MaterialTheme.colorScheme.onBackground
+                                    )
+                                },
                             )
                             Tab(
                                 selected = selectedTab == 2,
                                 onClick = { selectedTab = 2 },
-                                text = { Text("Season", color = if (selectedTab == 2) accent else Color.White) },
+                                text = {
+                                    Text(
+                                        "Season",
+                                        color = if (selectedTab == 2) accent else MaterialTheme.colorScheme.onBackground
+                                    )
+                                },
                             )
                         }
                         Column(
@@ -176,7 +201,7 @@ fun FishDetailScreen(speciesId: Int, navController: NavController) {
                             when (selectedTab) {
                                 0 -> HabitatTab(s.species)
                                 1 -> BaitTab(s.species)
-                                2 -> SeasonTab(s.species)
+                                2 -> SeasonTab(s.species, accent)
                             }
                         }
                     }
@@ -218,15 +243,23 @@ private fun HeroSection(species: Species, accent: Color) {
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
+            // Fish name - always use white for visibility, with accent as glow
             Text(
                 text = species.name,
-                style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Black),
-                color = accent,
+                style = MaterialTheme.typography.headlineMedium.copy(
+                    shadow = Shadow(
+                        color = accent.copy(alpha = 0.9f),
+                        offset = Offset(0f, 0f),
+                        blurRadius = 16f
+                    )
+                ),
+                color = Color.White,
             )
+            // Hero fact with white text for guaranteed readability
             Text(
                 text = species.heroFact,
-                style = MaterialTheme.typography.bodyMedium,
-                color = Color.White.copy(alpha = 0.9f),
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.White,
             )
         }
     }
@@ -242,8 +275,8 @@ private fun GradientCard(content: @Composable () -> Unit) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color.White.copy(alpha = 0.3f),
-                        Color.White.copy(alpha = 0.05f)
+                        MaterialTheme.iceColors.borderStart,
+                        MaterialTheme.iceColors.borderEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
@@ -254,8 +287,8 @@ private fun GradientCard(content: @Composable () -> Unit) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color(0xFF0F172A).copy(alpha = 0.65f),
-                        Color(0xFF1E293B).copy(alpha = 0.45f)
+                        MaterialTheme.iceColors.cardBgStart,
+                        MaterialTheme.iceColors.cardBgEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY)
@@ -273,7 +306,7 @@ private fun HabitatTab(species: Species) {
             Text(
                 text = paragraph,
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color.White,
+                color = IceOnBackground,
                 modifier = Modifier.padding(16.dp),
             )
         }
@@ -287,7 +320,7 @@ private fun BaitTab(species: Species) {
             Text(
                 text = paragraph,
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color.White,
+                color = IceOnBackground,
                 modifier = Modifier.padding(16.dp),
             )
         }
@@ -295,7 +328,7 @@ private fun BaitTab(species: Species) {
 }
 
 @Composable
-private fun SeasonTab(species: Species) {
+private fun SeasonTab(species: Species, accent: Color) {
     val season = species.season
     GradientCard {
         Column(
@@ -304,34 +337,34 @@ private fun SeasonTab(species: Species) {
         ) {
             Text(
                 text = "Peak months",
-                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                color = Color(0xFF4DD0E1)
+                style = MaterialTheme.typography.titleMedium,
+                color = IceCyan
             )
             Text(
                 text = season.peakMonths.joinToString(", "),
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color.White
+                color = IceOnBackground
             )
             Text(
                 text = "Winter behavior",
-                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                color = Color(0xFF4DD0E1)
+                style = MaterialTheme.typography.titleMedium,
+                color = IceCyan
             )
             Text(
                 text = season.behavior,
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color.White
+                color = IceOnBackground
             )
             Text(
                 text = "Tips",
-                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                color = Color(0xFF4DD0E1)
+                style = MaterialTheme.typography.titleMedium,
+                color = IceCyan
             )
             season.tips.forEach { tip ->
                 Text(
                     text = "· $tip",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = Color.White
+                    color = IceOnBackground
                 )
             }
         }

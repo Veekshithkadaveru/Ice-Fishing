@@ -1,6 +1,5 @@
 package app.krafted.icefishing.ui.quiz
 
-import androidx.activity.ComponentActivity
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -50,16 +49,14 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import app.krafted.icefishing.navigation.Screen
 import app.krafted.icefishing.ui.assets.IceFishAssets
 import app.krafted.icefishing.ui.components.SnowfallBackground
+import app.krafted.icefishing.ui.theme.iceColors
 import app.krafted.icefishing.viewmodel.QuizCategory
 import app.krafted.icefishing.viewmodel.QuizHomeUiState
 import app.krafted.icefishing.viewmodel.QuizViewModel
@@ -68,7 +65,7 @@ import kotlinx.coroutines.delay
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QuizHomeScreen(navController: NavController) {
-    val viewModel: QuizViewModel = viewModel(LocalContext.current as ComponentActivity)
+    val viewModel: QuizViewModel = viewModel()
     val state by viewModel.homeState.collectAsState()
     val scores by viewModel.allScores.collectAsState()
 
@@ -83,7 +80,7 @@ fun QuizHomeScreen(navController: NavController) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.5f))
+                .background(MaterialTheme.iceColors.scrim)
         )
 
         SnowfallBackground(modifier = Modifier.fillMaxSize())
@@ -94,10 +91,8 @@ fun QuizHomeScreen(navController: NavController) {
                     title = {
                         Text(
                             text = "Quiz Challenge",
-                            style = MaterialTheme.typography.titleLarge.copy(
-                                fontWeight = FontWeight.Bold
-                            ),
-                            color = Color.White
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     },
                     navigationIcon = {
@@ -105,13 +100,16 @@ fun QuizHomeScreen(navController: NavController) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back",
-                                tint = Color.White
+                                tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     },
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                         containerColor = Color.Transparent,
-                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f)
+                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f),
+                        titleContentColor = MaterialTheme.colorScheme.onBackground,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
+                        actionIconContentColor = MaterialTheme.colorScheme.onBackground
                     )
                 )
             },
@@ -124,7 +122,7 @@ fun QuizHomeScreen(navController: NavController) {
                         .padding(padding),
                     contentAlignment = Alignment.Center
                 ) {
-                    CircularProgressIndicator(color = Color.White)
+                    CircularProgressIndicator(color = MaterialTheme.colorScheme.onBackground)
                 }
 
                 is QuizHomeUiState.Ready -> LazyColumn(
@@ -188,8 +186,8 @@ private fun QuizCategoryCard(
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color.White.copy(alpha = 0.3f),
-                        Color.White.copy(alpha = 0.05f)
+                        MaterialTheme.iceColors.borderStart,
+                        MaterialTheme.iceColors.borderEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
@@ -200,8 +198,8 @@ private fun QuizCategoryCard(
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color(0xFF0F172A).copy(alpha = 0.65f),
-                        Color(0xFF1E293B).copy(alpha = 0.45f)
+                        MaterialTheme.iceColors.cardBgStart,
+                        MaterialTheme.iceColors.cardBgEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY)
@@ -222,7 +220,7 @@ private fun QuizCategoryCard(
                     .background(
                         Brush.radialGradient(
                             colors = listOf(
-                                Color(0xFF4DD0E1).copy(alpha = 0.4f),
+                                MaterialTheme.iceColors.cyan.copy(alpha = 0.4f),
                                 Color.Transparent
                             ),
                             radius = 120f
@@ -242,17 +240,14 @@ private fun QuizCategoryCard(
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = category.categoryName,
-                    style = MaterialTheme.typography.titleLarge.copy(
-                        fontWeight = FontWeight.ExtraBold,
-                        letterSpacing = 0.5.sp
-                    ),
-                    color = Color.White
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.onBackground
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = "${category.questionCount} questions",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFFB3E5FC).copy(alpha = 0.8f)
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 if (completed && bestScore != null) {
                     Spacer(modifier = Modifier.height(6.dp))
@@ -260,16 +255,14 @@ private fun QuizCategoryCard(
                         Icon(
                             imageVector = Icons.Default.Star,
                             contentDescription = null,
-                            tint = Color(0xFFFFB300),
+                            tint = MaterialTheme.iceColors.gold,
                             modifier = Modifier.size(16.dp)
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
                             text = "Best: $bestScore/$totalQuestions",
-                            style = MaterialTheme.typography.bodySmall.copy(
-                                fontWeight = FontWeight.SemiBold
-                            ),
-                            color = Color(0xFFFFB300)
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.iceColors.gold
                         )
                     }
                 }

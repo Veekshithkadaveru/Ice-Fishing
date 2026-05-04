@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            IceFishingTheme {
+            IceFishingTheme(darkTheme = true) {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     IceFishingNavHost()
                 }

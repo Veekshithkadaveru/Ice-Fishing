@@ -18,7 +18,7 @@ class QuizRepository(
         if (cachedQuestions == null) {
             cachedQuestions = loadJsonAsset<List<QuizQuestion>>(context, gson, "quiz.json")
         }
-        return cachedQuestions!!
+        return cachedQuestions ?: emptyList()
     }
 
     suspend fun getQuestionsByCategory(categoryId: String): List<QuizQuestion> {

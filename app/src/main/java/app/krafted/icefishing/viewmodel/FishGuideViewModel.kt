@@ -9,6 +9,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 sealed interface FishGuideUiState {
@@ -25,7 +26,7 @@ class FishGuideViewModel(application: Application) : AndroidViewModel(applicatio
     val state: StateFlow<FishGuideUiState> = _state.asStateFlow()
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _state.value = FishGuideUiState.Ready(repository.getSpecies())
         }
     }

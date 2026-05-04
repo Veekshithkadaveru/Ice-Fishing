@@ -8,9 +8,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -18,6 +18,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Star
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -26,7 +27,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -37,12 +37,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import app.krafted.icefishing.ui.assets.IceFishAssets
 import app.krafted.icefishing.ui.components.SnowfallBackground
+import app.krafted.icefishing.ui.theme.iceColors
 import app.krafted.icefishing.viewmodel.ArticleDetailUiState
 import app.krafted.icefishing.viewmodel.ArticleDetailViewModel
 
@@ -55,11 +55,6 @@ fun ArticleDetailScreen(articleId: Int, navController: NavController) {
         factory = ArticleDetailViewModel.factory(app, articleId),
     )
     val state by viewModel.state.collectAsState()
-
-    val title = when (state) {
-        is ArticleDetailUiState.Ready -> (state as ArticleDetailUiState.Ready).article.title
-        else -> "Article"
-    }
 
     val isBookmarked = when (state) {
         is ArticleDetailUiState.Ready -> (state as ArticleDetailUiState.Ready).isBookmarked
@@ -77,29 +72,27 @@ fun ArticleDetailScreen(articleId: Int, navController: NavController) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.5f))
+                .background(MaterialTheme.iceColors.scrim)
         )
 
         SnowfallBackground(modifier = Modifier.fillMaxSize())
 
         Scaffold(
             topBar = {
-                TopAppBar(
-                    title = { 
+                CenterAlignedTopAppBar(
+                    title = {
                         Text(
                             text = "Article",
-                            style = MaterialTheme.typography.titleLarge.copy(
-                                fontWeight = FontWeight.Bold
-                            ),
-                            color = Color.White
-                        ) 
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.onBackground
+                        )
                     },
                     navigationIcon = {
                         IconButton(onClick = { navController.popBackStack() }) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back",
-                                tint = Color.White
+                                tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     },
@@ -111,13 +104,16 @@ fun ArticleDetailScreen(articleId: Int, navController: NavController) {
                             Icon(
                                 imageVector = if (isBookmarked) Icons.Filled.Star else Icons.Outlined.Star,
                                 contentDescription = if (isBookmarked) "Remove bookmark" else "Add bookmark",
-                                tint = if (isBookmarked) Color(0xFFFFD54F) else Color.White,
+                                tint = if (isBookmarked) MaterialTheme.iceColors.gold else MaterialTheme.colorScheme.onBackground,
                             )
                         }
                     },
-                    colors = TopAppBarDefaults.topAppBarColors(
+                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                         containerColor = Color.Transparent,
-                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f)
+                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f),
+                        titleContentColor = MaterialTheme.colorScheme.onBackground,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
+                        actionIconContentColor = MaterialTheme.colorScheme.onBackground
                     )
                 )
             },
@@ -130,7 +126,7 @@ fun ArticleDetailScreen(articleId: Int, navController: NavController) {
                         .padding(padding),
                     contentAlignment = Alignment.Center,
                 ) {
-                    CircularProgressIndicator(color = Color.White)
+                    CircularProgressIndicator(color = MaterialTheme.colorScheme.onBackground)
                 }
 
                 is ArticleDetailUiState.NotFound -> Box(
@@ -139,7 +135,11 @@ fun ArticleDetailScreen(articleId: Int, navController: NavController) {
                         .padding(padding),
                     contentAlignment = Alignment.Center,
                 ) {
-                    Text("Article not found.", style = MaterialTheme.typography.bodyLarge, color = Color.White)
+                    Text(
+                        "Article not found.",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
                 }
 
                 is ArticleDetailUiState.Ready -> Column(
@@ -158,36 +158,34 @@ fun ArticleDetailScreen(articleId: Int, navController: NavController) {
                         Text(
                             text = s.article.category,
                             style = MaterialTheme.typography.labelLarge,
-                            color = Color(0xFF4DD0E1),
+                            color = MaterialTheme.iceColors.cyan,
                         )
                         Text(
                             text = "·",
                             style = MaterialTheme.typography.labelLarge,
-                            color = Color.White.copy(alpha = 0.5f),
+                            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
                         )
                         Text(
                             text = "${s.article.readTimeMin} min read",
                             style = MaterialTheme.typography.labelLarge,
-                            color = Color.White.copy(alpha = 0.7f),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
 
                     Text(
                         text = s.article.title,
-                        style = MaterialTheme.typography.headlineMedium.copy(
-                            fontWeight = FontWeight.Bold
-                        ),
-                        color = Color.White
+                        style = MaterialTheme.typography.headlineMedium,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
 
-                    HorizontalDivider(color = Color.White.copy(alpha = 0.2f))
+                    HorizontalDivider(color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.2f))
 
                     Text(
                         text = s.article.body,
                         style = MaterialTheme.typography.bodyLarge,
-                        color = Color.White.copy(alpha = 0.9f)
+                        color = MaterialTheme.colorScheme.onBackground
                     )
-                    
+
                     Spacer(modifier = Modifier.height(32.dp))
                 }
             }

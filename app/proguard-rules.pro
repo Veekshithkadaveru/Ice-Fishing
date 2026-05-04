@@ -1,3 +1,13 @@
+# Keep data model classes for Gson deserialization
+-keep class app.krafted.icefishing.data.model.** { *; }
+# Keep Room entity classes
+-keep class app.krafted.icefishing.data.db.entities.** { *; }
+# Gson
+-keepattributes Signature
+-keepattributes *Annotation*
+-dontwarn sun.misc.**
+-keep class com.google.gson.** { *; }
+
 # Add project specific ProGuard rules here.
 # You can control the set of applied configuration files using the
 # proguardFiles setting in build.gradle.

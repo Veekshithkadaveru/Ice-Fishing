@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 sealed interface ArticlesUiState {
@@ -34,7 +35,7 @@ class ArticlesViewModel(application: Application) : AndroidViewModel(application
     private var allArticles: List<Article> = emptyList()
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             allArticles = repository.getArticles()
             val categories = allArticles.map { it.category }.distinct().sorted()
             _state.value = ArticlesUiState.Ready(allArticles, null, categories)

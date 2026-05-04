@@ -1,5 +1,7 @@
 package app.krafted.icefishing.ui.articles
 
+import androidx.compose.material3.MaterialTheme
+
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -12,7 +14,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -27,15 +28,14 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import app.krafted.icefishing.data.model.Article
 import app.krafted.icefishing.ui.assets.IceFishAssets
 import app.krafted.icefishing.ui.components.SnowfallBackground
+import app.krafted.icefishing.ui.theme.iceColors
 import app.krafted.icefishing.viewmodel.ArticlesUiState
 import app.krafted.icefishing.viewmodel.ArticlesViewModel
 import kotlinx.coroutines.delay
@@ -57,7 +57,7 @@ fun ArticlesHomeScreen(navController: NavController) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.5f))
+                .background(MaterialTheme.iceColors.scrim)
         )
 
         SnowfallBackground(modifier = Modifier.fillMaxSize())
@@ -68,10 +68,8 @@ fun ArticlesHomeScreen(navController: NavController) {
                     title = {
                         Text(
                             text = "Articles",
-                            style = MaterialTheme.typography.titleLarge.copy(
-                                fontWeight = FontWeight.Bold
-                            ),
-                            color = Color.White
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     },
                     navigationIcon = {
@@ -79,13 +77,16 @@ fun ArticlesHomeScreen(navController: NavController) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back",
-                                tint = Color.White
+                                tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     },
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                         containerColor = Color.Transparent,
-                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f)
+                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f),
+                        titleContentColor = MaterialTheme.colorScheme.onBackground,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
+                        actionIconContentColor = MaterialTheme.colorScheme.onBackground
                     )
                 )
             },
@@ -98,7 +99,7 @@ fun ArticlesHomeScreen(navController: NavController) {
                         .padding(padding),
                     contentAlignment = Alignment.Center,
                 ) {
-                    CircularProgressIndicator(color = Color.White)
+                    CircularProgressIndicator(color = MaterialTheme.colorScheme.onBackground)
                 }
 
                 is ArticlesUiState.Ready -> Column(
@@ -115,17 +116,17 @@ fun ArticlesHomeScreen(navController: NavController) {
                             FilterChip(
                                 selected = s.selectedCategory == null,
                                 onClick = { viewModel.selectCategory(null) },
-                                label = { Text("All", color = Color.White) },
+                                label = { Text("All", color = MaterialTheme.colorScheme.onBackground) },
                                 colors = FilterChipDefaults.filterChipColors(
                                     containerColor = Color.Transparent,
-                                    selectedContainerColor = Color(0xFF4DD0E1).copy(alpha = 0.2f),
-                                    selectedLabelColor = Color.White,
+                                    selectedContainerColor = MaterialTheme.iceColors.cyan.copy(alpha = 0.2f),
+                                    selectedLabelColor = MaterialTheme.colorScheme.onBackground,
                                 ),
                                 border = FilterChipDefaults.filterChipBorder(
                                     enabled = true,
                                     selected = s.selectedCategory == null,
-                                    borderColor = Color.White.copy(alpha = 0.5f),
-                                    selectedBorderColor = Color(0xFF4DD0E1)
+                                    borderColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
+                                    selectedBorderColor = MaterialTheme.iceColors.cyan
                                 )
                             )
                         }
@@ -133,17 +134,17 @@ fun ArticlesHomeScreen(navController: NavController) {
                             FilterChip(
                                 selected = s.selectedCategory == category,
                                 onClick = { viewModel.selectCategory(category) },
-                                label = { Text(category, color = Color.White) },
+                                label = { Text(category, color = MaterialTheme.colorScheme.onBackground) },
                                 colors = FilterChipDefaults.filterChipColors(
                                     containerColor = Color.Transparent,
-                                    selectedContainerColor = Color(0xFF4DD0E1).copy(alpha = 0.2f),
-                                    selectedLabelColor = Color.White,
+                                    selectedContainerColor = MaterialTheme.iceColors.cyan.copy(alpha = 0.2f),
+                                    selectedLabelColor = MaterialTheme.colorScheme.onBackground,
                                 ),
                                 border = FilterChipDefaults.filterChipBorder(
                                     enabled = true,
                                     selected = s.selectedCategory == category,
-                                    borderColor = Color.White.copy(alpha = 0.5f),
-                                    selectedBorderColor = Color(0xFF4DD0E1)
+                                    borderColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
+                                    selectedBorderColor = MaterialTheme.iceColors.cyan
                                 )
                             )
                         }
@@ -161,7 +162,7 @@ fun ArticlesHomeScreen(navController: NavController) {
                                 delay(index * 100L)
                                 isVisible = true
                             }
-                            
+
                             val isBookmarked by viewModel.isBookmarked(article.id)
                                 .collectAsState(initial = false)
 
@@ -203,8 +204,8 @@ private fun ArticleCard(
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color.White.copy(alpha = 0.3f),
-                        Color.White.copy(alpha = 0.05f)
+                        MaterialTheme.iceColors.borderStart,
+                        MaterialTheme.iceColors.borderEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
@@ -215,8 +216,8 @@ private fun ArticleCard(
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color(0xFF0F172A).copy(alpha = 0.65f),
-                        Color(0xFF1E293B).copy(alpha = 0.45f)
+                        MaterialTheme.iceColors.cardBgStart,
+                        MaterialTheme.iceColors.cardBgEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY)
@@ -237,11 +238,8 @@ private fun ArticleCard(
             ) {
                 Text(
                     text = article.title,
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.ExtraBold,
-                        letterSpacing = 0.5.sp
-                    ),
-                    color = Color.White,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier.weight(1f),
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
@@ -250,7 +248,7 @@ private fun ArticleCard(
                     Icon(
                         imageVector = Icons.Filled.Star,
                         contentDescription = null,
-                        tint = Color(0xFFFFD54F),
+                        tint = MaterialTheme.iceColors.gold,
                     )
                 }
             }
@@ -262,17 +260,17 @@ private fun ArticleCard(
                 Text(
                     text = article.category,
                     style = MaterialTheme.typography.labelMedium,
-                    color = Color(0xFF4DD0E1),
+                    color = MaterialTheme.iceColors.cyan,
                 )
                 Text(
                     text = "·",
                     style = MaterialTheme.typography.labelMedium,
-                    color = Color.White.copy(alpha = 0.5f),
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
                 )
                 Text(
                     text = "${article.readTimeMin} min read",
                     style = MaterialTheme.typography.labelMedium,
-                    color = Color.White.copy(alpha = 0.7f),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }

@@ -1,6 +1,5 @@
 package app.krafted.icefishing.ui.quiz
 
-import androidx.activity.ComponentActivity
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
@@ -42,6 +41,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -49,28 +49,28 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
+import app.krafted.icefishing.navigation.Screen
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import app.krafted.icefishing.navigation.Screen
 import app.krafted.icefishing.ui.assets.IceFishAssets
 import app.krafted.icefishing.ui.components.SnowfallBackground
+import app.krafted.icefishing.ui.theme.IceCyan
+import app.krafted.icefishing.ui.theme.iceColors
 import app.krafted.icefishing.viewmodel.QuizViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QuizScreen(categoryId: String, navController: NavController) {
-    val viewModel: QuizViewModel = viewModel(LocalContext.current as ComponentActivity)
+    val quizHomeEntry = remember(navController) { navController.getBackStackEntry(Screen.QuizHome.route) }
+    val viewModel: QuizViewModel = viewModel(quizHomeEntry)
     val session by viewModel.sessionState.collectAsState()
 
     LaunchedEffect(session.finished) {
         if (session.finished) {
-            navController.navigate(Screen.QuizResult.createRoute(categoryId)) {
-                popUpTo(Screen.Quiz.createRoute(categoryId)) { inclusive = true }
+            navController.navigate(app.krafted.icefishing.navigation.Screen.QuizResult.createRoute(categoryId)) {
+                popUpTo(app.krafted.icefishing.navigation.Screen.Quiz.createRoute(categoryId)) { inclusive = true }
             }
         }
     }
@@ -97,10 +97,8 @@ fun QuizScreen(categoryId: String, navController: NavController) {
                     title = {
                         Text(
                             text = viewModel.getCategoryName(categoryId),
-                            style = MaterialTheme.typography.titleLarge.copy(
-                                fontWeight = FontWeight.Bold
-                            ),
-                            color = Color.White
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     },
                     navigationIcon = {
@@ -108,13 +106,16 @@ fun QuizScreen(categoryId: String, navController: NavController) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back",
-                                tint = Color.White
+                                tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     },
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                         containerColor = Color.Transparent,
-                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f)
+                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f),
+                        titleContentColor = MaterialTheme.colorScheme.onBackground,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
+                        actionIconContentColor = MaterialTheme.colorScheme.onBackground
                     )
                 )
             },
@@ -129,7 +130,7 @@ fun QuizScreen(categoryId: String, navController: NavController) {
                         .padding(padding),
                     contentAlignment = Alignment.Center
                 ) {
-                    CircularProgressIndicator(color = Color.White)
+                    CircularProgressIndicator(color = MaterialTheme.colorScheme.onBackground)
                 }
             } else {
                 AnimatedContent(
@@ -159,30 +160,26 @@ fun QuizScreen(categoryId: String, navController: NavController) {
                         ) {
                             Text(
                                 text = "Question ${session.currentIndex + 1}/${session.totalQuestions}",
-                                style = MaterialTheme.typography.labelLarge.copy(
-                                    fontWeight = FontWeight.SemiBold
-                                ),
-                                color = Color(0xFFB3E5FC)
+                                style = MaterialTheme.typography.labelLarge,
+                                color = MaterialTheme.colorScheme.onBackground
                             )
                             Text(
                                 text = "Score: ${session.score}",
-                                style = MaterialTheme.typography.labelLarge.copy(
-                                    fontWeight = FontWeight.Bold
-                                ),
-                                color = Color(0xFFFFB300)
+                                style = MaterialTheme.typography.labelLarge,
+                                color = MaterialTheme.iceColors.gold
                             )
                         }
 
                         Spacer(modifier = Modifier.height(8.dp))
 
-                        LinearProgressIndicator(
+                            LinearProgressIndicator(
                             progress = { (session.currentIndex + 1).toFloat() / session.totalQuestions },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(6.dp)
                                 .clip(RoundedCornerShape(3.dp)),
-                            color = Color(0xFF4DD0E1),
-                            trackColor = Color.White.copy(alpha = 0.15f)
+                            color = IceCyan,
+                            trackColor = MaterialTheme.colorScheme.onSurfaceVariant
                         )
 
                         Spacer(modifier = Modifier.height(32.dp))
@@ -195,8 +192,8 @@ fun QuizScreen(categoryId: String, navController: NavController) {
                                 .background(
                                     Brush.linearGradient(
                                         colors = listOf(
-                                            Color.White.copy(alpha = 0.2f),
-                                            Color.White.copy(alpha = 0.05f)
+                                            MaterialTheme.colorScheme.onBackground.copy(alpha = 0.2f),
+                                            MaterialTheme.colorScheme.onBackground.copy(alpha = 0.05f)
                                         ),
                                         start = Offset(0f, 0f),
                                         end = Offset(
@@ -210,8 +207,8 @@ fun QuizScreen(categoryId: String, navController: NavController) {
                                 .background(
                                     Brush.linearGradient(
                                         colors = listOf(
-                                            Color(0xFF0F172A).copy(alpha = 0.75f),
-                                            Color(0xFF1E293B).copy(alpha = 0.55f)
+                                            MaterialTheme.iceColors.cardBgStart.copy(alpha = 0.75f),
+                                            MaterialTheme.iceColors.cardBgEnd.copy(alpha = 0.55f)
                                         ),
                                         start = Offset(0f, 0f),
                                         end = Offset(0f, Float.POSITIVE_INFINITY)
@@ -221,11 +218,8 @@ fun QuizScreen(categoryId: String, navController: NavController) {
                         ) {
                             Text(
                                 text = question.question,
-                                style = MaterialTheme.typography.titleMedium.copy(
-                                    fontWeight = FontWeight.SemiBold,
-                                    lineHeight = 26.sp
-                                ),
-                                color = Color.White
+                                style = MaterialTheme.typography.titleMedium,
+                                color = MaterialTheme.colorScheme.onBackground
                             )
                         }
 
@@ -255,8 +249,8 @@ fun QuizScreen(categoryId: String, navController: NavController) {
                                     .background(
                                         Brush.linearGradient(
                                             colors = listOf(
-                                                Color(0xFF4DD0E1),
-                                                Color(0xFF0097A7)
+                                                MaterialTheme.iceColors.cyan,
+                                                MaterialTheme.iceColors.cyanDark
                                             )
                                         )
                                     )
@@ -266,10 +260,8 @@ fun QuizScreen(categoryId: String, navController: NavController) {
                             ) {
                                 Text(
                                     text = if (session.currentIndex + 1 >= session.totalQuestions) "See Results" else "Next Question",
-                                    style = MaterialTheme.typography.titleMedium.copy(
-                                        fontWeight = FontWeight.Bold
-                                    ),
-                                    color = Color.White
+                                    style = MaterialTheme.typography.titleMedium,
+                                    color = MaterialTheme.colorScheme.onBackground
                                 )
                             }
                         }
@@ -291,10 +283,10 @@ private fun OptionCard(
 ) {
     val borderColor by animateColorAsState(
         targetValue = when {
-            !answered -> Color.White.copy(alpha = 0.2f)
-            isCorrect -> Color(0xFF4CAF50)
-            selected -> Color(0xFFEF5350)
-            else -> Color.White.copy(alpha = 0.1f)
+            !answered -> MaterialTheme.colorScheme.onBackground.copy(alpha = 0.2f)
+            isCorrect -> MaterialTheme.iceColors.success
+            selected -> MaterialTheme.iceColors.danger
+            else -> MaterialTheme.colorScheme.onBackground.copy(alpha = 0.1f)
         },
         animationSpec = tween(300),
         label = "borderColor"
@@ -302,10 +294,10 @@ private fun OptionCard(
 
     val bgAlpha by animateColorAsState(
         targetValue = when {
-            !answered -> Color(0xFF0F172A).copy(alpha = 0.5f)
-            isCorrect -> Color(0xFF4CAF50).copy(alpha = 0.15f)
-            selected -> Color(0xFFEF5350).copy(alpha = 0.15f)
-            else -> Color(0xFF0F172A).copy(alpha = 0.3f)
+            !answered -> MaterialTheme.iceColors.cardBgStart.copy(alpha = 0.5f)
+            isCorrect -> MaterialTheme.iceColors.success.copy(alpha = 0.15f)
+            selected -> MaterialTheme.iceColors.danger.copy(alpha = 0.15f)
+            else -> MaterialTheme.iceColors.cardBgStart.copy(alpha = 0.3f)
         },
         animationSpec = tween(300),
         label = "bgColor"
@@ -342,9 +334,9 @@ private fun OptionCard(
                     .clip(RoundedCornerShape(8.dp))
                     .background(
                         when {
-                            answered && isCorrect -> Color(0xFF4CAF50).copy(alpha = 0.3f)
-                            answered && selected -> Color(0xFFEF5350).copy(alpha = 0.3f)
-                            else -> Color.White.copy(alpha = 0.1f)
+                            answered && isCorrect -> MaterialTheme.iceColors.success.copy(alpha = 0.3f)
+                            answered && selected -> MaterialTheme.iceColors.danger.copy(alpha = 0.3f)
+                            else -> MaterialTheme.colorScheme.onBackground.copy(alpha = 0.1f)
                         }
                     ),
                 contentAlignment = Alignment.Center
@@ -353,16 +345,14 @@ private fun OptionCard(
                     Icon(
                         imageVector = if (isCorrect) Icons.Default.Check else Icons.Default.Close,
                         contentDescription = null,
-                        tint = if (isCorrect) Color(0xFF4CAF50) else Color(0xFFEF5350),
+                        tint = if (isCorrect) MaterialTheme.iceColors.success else MaterialTheme.iceColors.danger,
                         modifier = Modifier.size(18.dp)
                     )
                 } else {
                     Text(
                         text = labels.getOrElse(index) { "" },
-                        style = MaterialTheme.typography.labelLarge.copy(
-                            fontWeight = FontWeight.Bold
-                        ),
-                        color = Color.White.copy(alpha = 0.7f)
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
                     )
                 }
             }
@@ -370,7 +360,7 @@ private fun OptionCard(
             Text(
                 text = text,
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color.White
+                color = MaterialTheme.colorScheme.onBackground
             )
         }
     }

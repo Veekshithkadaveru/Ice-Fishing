@@ -1,5 +1,7 @@
 package app.krafted.icefishing.ui.tips
 
+import androidx.compose.material3.MaterialTheme
+
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandVertically
@@ -27,12 +29,12 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import app.krafted.icefishing.data.model.Tip
 import app.krafted.icefishing.ui.assets.IceFishAssets
+import app.krafted.icefishing.ui.theme.iceColors
 import app.krafted.icefishing.viewmodel.TipsUiState
 import app.krafted.icefishing.viewmodel.TipsViewModel
 
@@ -42,8 +44,9 @@ fun TipsCategoryScreen(categoryId: String, navController: NavController) {
     val viewModel: TipsViewModel = viewModel()
     val state by viewModel.state.collectAsState()
 
-    val categoryName = viewModel.getCategoryName(categoryId)
-    val tips = viewModel.getTipsForCategory(categoryId)
+    val categoryName = remember(state, categoryId) {
+        (state as? TipsUiState.Ready)?.categories?.find { it.categoryId == categoryId }?.categoryName ?: categoryId
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -56,7 +59,7 @@ fun TipsCategoryScreen(categoryId: String, navController: NavController) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.5f))
+                .background(MaterialTheme.iceColors.scrim)
         )
 
         Scaffold(
@@ -65,10 +68,8 @@ fun TipsCategoryScreen(categoryId: String, navController: NavController) {
                     title = {
                         Text(
                             text = categoryName,
-                            style = MaterialTheme.typography.titleLarge.copy(
-                                fontWeight = FontWeight.Bold
-                            ),
-                            color = Color.White
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     },
                     navigationIcon = {
@@ -76,37 +77,43 @@ fun TipsCategoryScreen(categoryId: String, navController: NavController) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back",
-                                tint = Color.White
+                                tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     },
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                         containerColor = Color.Transparent,
-                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f)
+                        scrolledContainerColor = Color.Black.copy(alpha = 0.7f),
+                        titleContentColor = MaterialTheme.colorScheme.onBackground,
+                        navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
+                        actionIconContentColor = MaterialTheme.colorScheme.onBackground
                     )
                 )
             },
             containerColor = Color.Transparent
         ) { padding ->
-            when (state) {
+            when (val currentState = state) {
                 is TipsUiState.Loading -> Box(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(padding),
                     contentAlignment = Alignment.Center
                 ) {
-                    CircularProgressIndicator(color = Color.White)
+                    CircularProgressIndicator(color = MaterialTheme.colorScheme.onBackground)
                 }
 
-                is TipsUiState.Ready -> LazyColumn(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(padding),
-                    contentPadding = PaddingValues(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    items(tips, key = { it.id }) { tip ->
-                        ExpandableTipCard(tip = tip)
+                is TipsUiState.Ready -> {
+                    val tips = currentState.tipsByCategory[categoryId] ?: emptyList()
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(padding),
+                        contentPadding = PaddingValues(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        items(tips, key = { it.id }) { tip ->
+                            ExpandableTipCard(tip = tip)
+                        }
                     }
                 }
             }
@@ -126,8 +133,8 @@ private fun ExpandableTipCard(tip: Tip) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color.White.copy(alpha = 0.3f),
-                        Color.White.copy(alpha = 0.05f)
+                        MaterialTheme.iceColors.borderStart,
+                        MaterialTheme.iceColors.borderEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
@@ -138,8 +145,8 @@ private fun ExpandableTipCard(tip: Tip) {
             .background(
                 Brush.linearGradient(
                     colors = listOf(
-                        Color(0xFF0F172A).copy(alpha = 0.65f),
-                        Color(0xFF1E293B).copy(alpha = 0.45f)
+                        MaterialTheme.iceColors.cardBgStart,
+                        MaterialTheme.iceColors.cardBgEnd
                     ),
                     start = Offset(0f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY)
@@ -159,16 +166,14 @@ private fun ExpandableTipCard(tip: Tip) {
             ) {
                 Text(
                     text = tip.title,
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.SemiBold
-                    ),
-                    color = Color.White,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier.weight(1f)
                 )
                 Icon(
                     imageVector = if (expanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
                     contentDescription = if (expanded) "Collapse" else "Expand",
-                    tint = Color(0xFF4DD0E1),
+                    tint = MaterialTheme.iceColors.cyan,
                     modifier = Modifier.padding(start = 8.dp)
                 )
             }
@@ -180,15 +185,15 @@ private fun ExpandableTipCard(tip: Tip) {
             ) {
                 Column {
                     Spacer(modifier = Modifier.height(12.dp))
-                    Divider(
-                        color = Color.White.copy(alpha = 0.2f),
+                    HorizontalDivider(
+                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.2f),
                         thickness = 1.dp
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
                         text = tip.body,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color(0xFFB3E5FC).copy(alpha = 0.9f)
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             }

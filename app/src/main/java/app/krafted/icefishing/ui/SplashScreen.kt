@@ -44,11 +44,15 @@ import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import app.krafted.icefishing.R
 import app.krafted.icefishing.ui.components.SnowfallBackground
+import app.krafted.icefishing.ui.theme.IceBackground
+import app.krafted.icefishing.ui.theme.IceCyanLight
+import app.krafted.icefishing.ui.theme.IceDeepNavy
+import app.krafted.icefishing.ui.theme.IceMidnight
+import app.krafted.icefishing.ui.theme.IceOnBackground
+import app.krafted.icefishing.ui.theme.IceSurface
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.cos
@@ -160,10 +164,10 @@ fun SplashScreen(onNavigateToHome: () -> Unit) {
             .background(
                 Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFF030C17),
-                        Color(0xFF0A1929),
-                        Color(0xFF0F2A40),
-                        Color(0xFF061220)
+                        IceMidnight,
+                        IceBackground,
+                        IceSurface,
+                        IceDeepNavy
                     )
                 )
             )
@@ -298,8 +302,6 @@ fun SplashScreen(onNavigateToHome: () -> Unit) {
             Text(
                 text = "ICE FISHING PRO",
                 style = MaterialTheme.typography.headlineMedium.copy(
-                    fontWeight = FontWeight.Black,
-                    letterSpacing = 6.sp,
                     shadow = Shadow(
                         color = Color(0xFF4DD0E1).copy(alpha = 0.8f),
                         offset = Offset(0f, 4f),
@@ -315,24 +317,20 @@ fun SplashScreen(onNavigateToHome: () -> Unit) {
             Text(
                 text = "Your Complete Winter Companion",
                 style = MaterialTheme.typography.bodyLarge.copy(
-                    fontWeight = FontWeight.Medium,
-                    letterSpacing = 2.sp,
                     shadow = Shadow(
-                        color = Color(0xFF0A1929),
+                        color = IceBackground,
                         offset = Offset(0f, 2f),
                         blurRadius = 8f
                     )
                 ),
-                color = Color(0xFFB3E5FC).copy(alpha = 0.9f),
+                color = IceOnBackground,
                 modifier = Modifier.alpha(subtitleAlpha.value)
             )
         }
 
         Text(
             text = "Tap to continue",
-            style = MaterialTheme.typography.bodySmall.copy(
-                letterSpacing = 1.sp
-            ),
+            style = MaterialTheme.typography.bodySmall,
             color = Color.White.copy(alpha = subtitleAlpha.value * 0.5f),
             modifier = Modifier
                 .align(Alignment.BottomCenter)

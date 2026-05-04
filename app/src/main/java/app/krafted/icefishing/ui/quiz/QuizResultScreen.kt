@@ -1,6 +1,5 @@
 package app.krafted.icefishing.ui.quiz
 
-import androidx.activity.ComponentActivity
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.EaseInOutSine
 import androidx.compose.animation.core.RepeatMode
@@ -45,9 +44,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -55,12 +52,15 @@ import androidx.navigation.NavController
 import app.krafted.icefishing.navigation.Screen
 import app.krafted.icefishing.ui.assets.IceFishAssets
 import app.krafted.icefishing.ui.components.SnowfallBackground
+import app.krafted.icefishing.ui.theme.IceCyan
+import app.krafted.icefishing.ui.theme.iceColors
 import app.krafted.icefishing.viewmodel.QuizViewModel
 import kotlinx.coroutines.delay
 
 @Composable
 fun QuizResultScreen(categoryId: String, navController: NavController) {
-    val viewModel: QuizViewModel = viewModel(LocalContext.current as ComponentActivity)
+    val quizHomeEntry = remember(navController) { navController.getBackStackEntry(Screen.QuizHome.route) }
+    val viewModel: QuizViewModel = viewModel(quizHomeEntry)
     val session by viewModel.sessionState.collectAsState()
 
     val score = session.score
@@ -122,15 +122,13 @@ fun QuizResultScreen(categoryId: String, navController: NavController) {
                             else -> "Keep Trying!"
                         },
                         style = MaterialTheme.typography.headlineLarge.copy(
-                            fontWeight = FontWeight.Black,
-                            letterSpacing = 2.sp,
                             shadow = Shadow(
-                                color = Color(0xFF4DD0E1).copy(alpha = 0.6f),
+                                color = MaterialTheme.iceColors.cyan.copy(alpha = 0.6f),
                                 offset = Offset(0f, 4f),
                                 blurRadius = 12f
                             )
                         ),
-                        color = Color.White
+                        color = MaterialTheme.colorScheme.onBackground
                     )
 
                     Spacer(modifier = Modifier.height(8.dp))
@@ -138,7 +136,7 @@ fun QuizResultScreen(categoryId: String, navController: NavController) {
                     Text(
                         text = viewModel.getCategoryName(categoryId),
                         style = MaterialTheme.typography.titleMedium,
-                        color = Color(0xFFB3E5FC).copy(alpha = 0.8f)
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             }
@@ -157,8 +155,8 @@ fun QuizResultScreen(categoryId: String, navController: NavController) {
                         .background(
                             Brush.linearGradient(
                                 colors = listOf(
-                                    Color.White.copy(alpha = 0.3f),
-                                    Color.White.copy(alpha = 0.05f)
+                                    MaterialTheme.iceColors.borderStart,
+                                    MaterialTheme.iceColors.borderEnd
                                 ),
                                 start = Offset(0f, 0f),
                                 end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
@@ -169,8 +167,8 @@ fun QuizResultScreen(categoryId: String, navController: NavController) {
                         .background(
                             Brush.linearGradient(
                                 colors = listOf(
-                                    Color(0xFF0F172A).copy(alpha = 0.75f),
-                                    Color(0xFF1E293B).copy(alpha = 0.55f)
+                                    MaterialTheme.iceColors.cardBgStart.copy(alpha = 0.75f),
+                                    MaterialTheme.iceColors.cardBgEnd.copy(alpha = 0.55f)
                                 ),
                                 start = Offset(0f, 0f),
                                 end = Offset(0f, Float.POSITIVE_INFINITY)
@@ -191,16 +189,13 @@ fun QuizResultScreen(categoryId: String, navController: NavController) {
                             label = "scoreScale"
                         )
 
-                        val scoreGradient = remember {
-                            Brush.linearGradient(
-                                colors = listOf(Color.White, Color(0xFF4DD0E1))
-                            )
-                        }
+                        val scoreGradient = Brush.linearGradient(
+                            colors = listOf(Color.White, IceCyan)
+                        )
 
                         Text(
                             text = "$score / $total",
                             style = MaterialTheme.typography.displayLarge.copy(
-                                fontWeight = FontWeight.Black,
                                 fontSize = (48 * scoreScale).sp,
                                 brush = scoreGradient
                             )
@@ -210,10 +205,8 @@ fun QuizResultScreen(categoryId: String, navController: NavController) {
 
                         Text(
                             text = "${(percentage * 100).toInt()}% Correct",
-                            style = MaterialTheme.typography.titleMedium.copy(
-                                fontWeight = FontWeight.SemiBold
-                            ),
-                            color = Color(0xFFB3E5FC)
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onBackground
                         )
 
                         Spacer(modifier = Modifier.height(20.dp))
@@ -229,7 +222,7 @@ fun QuizResultScreen(categoryId: String, navController: NavController) {
                                     Icon(
                                         imageVector = if (index < stars) Icons.Filled.Star else Icons.Outlined.Star,
                                         contentDescription = null,
-                                        tint = if (index < stars) Color(0xFFFFB300) else Color.White.copy(
+                                        tint = if (index < stars) MaterialTheme.iceColors.gold else MaterialTheme.colorScheme.onBackground.copy(
                                             alpha = 0.3f
                                         ),
                                         modifier = Modifier.size(40.dp)
@@ -259,8 +252,8 @@ fun QuizResultScreen(categoryId: String, navController: NavController) {
                             .background(
                                 Brush.linearGradient(
                                     colors = listOf(
-                                        Color(0xFF4DD0E1),
-                                        Color(0xFF0097A7)
+                                        MaterialTheme.iceColors.cyan,
+                                        MaterialTheme.iceColors.cyanDark
                                     )
                                 )
                             )
@@ -277,10 +270,8 @@ fun QuizResultScreen(categoryId: String, navController: NavController) {
                     ) {
                         Text(
                             text = "Play Again",
-                            style = MaterialTheme.typography.titleMedium.copy(
-                                fontWeight = FontWeight.Bold
-                            ),
-                            color = Color.White
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     }
 
@@ -292,8 +283,8 @@ fun QuizResultScreen(categoryId: String, navController: NavController) {
                             .background(
                                 Brush.linearGradient(
                                     colors = listOf(
-                                        Color.White.copy(alpha = 0.2f),
-                                        Color.White.copy(alpha = 0.05f)
+                                        MaterialTheme.iceColors.borderStart,
+                                        MaterialTheme.iceColors.borderEnd
                                     ),
                                     start = Offset(0f, 0f),
                                     end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
@@ -304,8 +295,8 @@ fun QuizResultScreen(categoryId: String, navController: NavController) {
                             .background(
                                 Brush.linearGradient(
                                     colors = listOf(
-                                        Color(0xFF0F172A).copy(alpha = 0.65f),
-                                        Color(0xFF1E293B).copy(alpha = 0.45f)
+                                        MaterialTheme.iceColors.cardBgStart,
+                                        MaterialTheme.iceColors.cardBgEnd
                                     ),
                                     start = Offset(0f, 0f),
                                     end = Offset(0f, Float.POSITIVE_INFINITY)
@@ -319,10 +310,8 @@ fun QuizResultScreen(categoryId: String, navController: NavController) {
                     ) {
                         Text(
                             text = "Back to Categories",
-                            style = MaterialTheme.typography.titleMedium.copy(
-                                fontWeight = FontWeight.Bold
-                            ),
-                            color = Color.White
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     }
                 }

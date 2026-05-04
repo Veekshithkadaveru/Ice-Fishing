@@ -11,7 +11,7 @@ class TipRepository(private val context: Context, private val gson: Gson) {
         if (cachedTips == null) {
             cachedTips = loadJsonAsset<List<Tip>>(context, gson, "tips.json")
         }
-        return cachedTips!!
+        return cachedTips ?: emptyList()
     }
 
     suspend fun getTipsByCategory(categoryId: String): List<Tip> {
